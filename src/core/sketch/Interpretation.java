@@ -1,6 +1,6 @@
 package core.sketch;
 
-public class Interpretation implements Comparable {
+public class Interpretation implements Comparable<Interpretation> {
 	private String name;
 	private Double confidence;
 	
@@ -13,8 +13,10 @@ public class Interpretation implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Interpretation other) {
+		if(this.confidence==other.confidence){
+            return this.name.compareTo(other.name);
+        }
+        return (int) (other.confidence-this.confidence);
 	}
 }
