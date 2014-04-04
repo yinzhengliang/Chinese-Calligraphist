@@ -14,4 +14,10 @@ public class Hausdroff implements IRecognizer {
 		return null;
 	}
 
+	@Override
+	public void preprosessing(Stroke stroke) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

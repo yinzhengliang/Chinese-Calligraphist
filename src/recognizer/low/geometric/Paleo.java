@@ -14,4 +14,10 @@ public class Paleo implements IRecognizer {
 		return null;
 	}
 
+	@Override
+	public void preprosessing(Stroke stroke) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

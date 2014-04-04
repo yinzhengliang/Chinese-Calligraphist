@@ -224,4 +224,10 @@ public class Rubine implements IRecognizer {
 		return feature;
 	}
 
+	@Override
+	public void preprosessing(Stroke stroke) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

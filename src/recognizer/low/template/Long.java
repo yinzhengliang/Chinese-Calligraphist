@@ -1,4 +1,4 @@
-package recognizer.low.gesture;
+package recognizer.low.template;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,7 +29,7 @@ public class Long implements IRecognizer {
 		return originalLong(stroke);
 	}
 
-	public List<Interpretation> NNLong(Stroke stroke) {
+	public List<Interpretation> NNLong(Stroke stroke) { 
 		Set<Interpretation> recognitionSet = new TreeSet<Interpretation>();
 
 		// TODO change the "file" to some config constance
@@ -253,5 +253,11 @@ public class Long implements IRecognizer {
 		feature.put("f22", Math.log(aspect));
 
 		return feature;
+	}
+
+	@Override
+	public void preprosessing(Stroke stroke) {
+		// TODO Auto-generated method stub
+		
 	}
 }
