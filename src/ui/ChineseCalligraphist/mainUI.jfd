@@ -1,0 +1,331 @@
+JFDML JFormDesigner: "5.1.2.0.134" Java: "1.7.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {comp statusPanel:::::x, seq {par l:::p {seq l {par l {seq l {comp toggleButton1:::p::p, space :7:7:p, comp prevButton:::p:73:p, space :12:12:p, comp nextButton:::p:68:p, space :7:7:p, comp newButton:::p:72:p, space :3:3:p, comp saveButton:::p:75:p, space :10:10:p, comp clearButton:::p:79:p, space :6:6:p, comp undoButton:::p:79:p, space :6:6:p, comp redoButton:::p:71:p}, seq l {comp sketchPanel:::p:560:p, space :::p, par l {comp resultPanel:::p:100:p, seq t {comp resultText:::p:62:p, space :p:17:p}}}}, space :::p, comp feedbackPanel:::::x}, comp separator1:::p:1024:p, comp recognizerPanel::l:p::p}, space :0:0:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp separator1:::p:5:p, space :p::p, comp recognizerPanel:::p:46:p, space :p:1:p, par l {seq l {par l {comp sketchPanel::::399:x, seq {space :p:5:p, comp resultText:::p:23:p, space :p:1:p, comp resultPanel:::::x}}, space :::p, par l {comp toggleButton1:::p::p, comp prevButton:::p::p, comp nextButton:::p::p, comp newButton:::p::p, comp saveButton:::p::p, comp clearButton:::p::p, comp undoButton:::p::p, comp redoButton:::p::p}}, comp feedbackPanel:::::x}, space :::p, comp statusPanel:::p::p}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"title": "Chinese Calligraphist"
+			"$sizePolicy": 2
+			"minimumSize": new java.awt.Dimension( 1024, 576 )
+			"background": sfield java.awt.Color white
+			"foreground": sfield java.awt.Color black
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "recognizerPanel"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "usedRecognizerPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "usedRecognizerLabel"
+						"text": "Please choose the recognizer"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 175
+						"x": 5
+						"y": 0
+						"height": 15
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "usingRubine"
+						"text": "Rubine"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "usingRubineMouseClicked", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 0
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "usingLong"
+						"text": "Long"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 68
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "usingOneDollar"
+						"text": "One Dollar"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 126
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "usingHausdroff"
+						"text": "Hausdroff"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 210
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "usingPaleo"
+						"text": "PaleoSketch"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 292
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator4"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 180
+						"y": 0
+						"width": 220
+						"height": 5
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"height": 45
+					"width": 395
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "displayRecognizerPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "displayRecognizerLabel"
+						"text": "Show the recognition of the recognizer"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 230
+						"x": 0
+						"y": 0
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayOneDollar"
+						"text": "One Dollar"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 348
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayLongOrigin"
+						"text": "Long Original"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 255
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayLongNN"
+						"text": "Long NN"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 184
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayRubineOrigin"
+						"text": "Rubine Original"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 81
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayRubineNN"
+						"text": "Rubine NN"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 0
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayPaleo"
+						"text": "PaleoSketch"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 508
+						"y": 15
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "displayHausdroff"
+						"text": "Hausdroff"
+						"$buttonGroup": new FormReference( "DisplayRecognizer" )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 429
+						"y": 15
+						"height": 23
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator5"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 230
+						"y": 0
+						"width": 375
+						"height": 5
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 415
+					"height": 45
+					"y": 0
+					"width": 610
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator2"
+					"orientation": 1
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 395
+					"y": -5
+					"height": 60
+					"width": 5
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator3"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 1024
+					"height": 5
+					"x": 0
+					"y": 45
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "statusPanel"
+				"background": new java.awt.Color( 51, 255, 102, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "statusText"
+					"text": "sadfasfaer"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 1020
+					"height": 25
+					"x": 0
+					"y": 0
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator6"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 0
+					"y": 0
+					"height": 5
+					"width": 1025
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "feedbackPanel"
+				"background": new java.awt.Color( 255, 255, 153, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "feedbackHead"
+					"text": "Feedbacks"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 10
+					"y": 5
+					"width": 240
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator7"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 5
+					"y": 25
+					"height": 12
+					"width": 295
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator8"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 305
+					"height": 12
+					"x": 15
+					"y": 30
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator9"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 305
+					"height": 12
+					"x": 30
+					"y": 35
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "feedbackArea"
+					"background": new java.awt.Color( 240, 10, 240, 68 )
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "feedbackText"
+						"editable": false
+						"background": new java.awt.Color( 255, 173, 82, 26 )
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 5
+					"y": 40
+					"width": 340
+					"height": 385
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "toggleButton1"
+				"text": "View/Draw"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "prevButton"
+				"text": "Prev"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "nextButton"
+				"text": "Next"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "newButton"
+				"text": "New"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "saveButton"
+				"text": "Save"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "clearButton"
+				"text": "Clear"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "undoButton"
+				"text": "Undo"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "redoButton"
+				"text": "Redo"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "sketchPanel"
+				"background": new java.awt.Color( 84, 255, 239, 255 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "sketchPanelMousePressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseMotionListener", "mouseDragged", "sketchPanelMouseDragged", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "sketchPanelMouseReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "resultPanel"
+				add( new FormComponent( "javax.swing.JList" ) {
+					name: "resultList"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "resultText"
+				"text": "R-Result "
+				"background": new java.awt.Color( 204, 204, 255, 255 )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "fileMenu"
+					"text": "File"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "confLoadMenu"
+						"text": "Load Training Configurations"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "analysisMenu"
+					"text": "Analysis"
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 10 )
+			"size": new java.awt.Dimension( 1035, 575 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "DisplayRecognizer"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 20, 410 )
+		} )
+	}
+}
