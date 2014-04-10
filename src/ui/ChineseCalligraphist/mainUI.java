@@ -29,9 +29,10 @@ public class mainUI extends JFrame {
 
 	private void usingRubineMouseClicked(MouseEvent e) {
 		// TODO add your code here
-		feedbackText.append("Rubine Mouse: " + usingRubine.isSelected() + "\n" );
+		feedbackText.repaint();
+		feedbackText.setText("Rubine Mouse: " + usingRubine.isSelected() + "\n" );
 		//feedbackPanel.repaint();
-		feedbackPanel.repaint();
+		//feedbackText.repaint();
 	}
 
 	private void sketchPanelMousePressed(MouseEvent e) {
@@ -41,8 +42,8 @@ public class mainUI extends JFrame {
 		points.add(e.getPoint());
 		
 		sketchPanel.removeAll();
-		Graphics g = new Graphics();
-		sketchPanel.add(new Graphics());
+//		Graphics g = new Graphics();
+		//sketchPanel.add(new Graphics());
 	}
 
 	private void sketchPanelMouseDragged(MouseEvent e) {
@@ -60,6 +61,10 @@ public class mainUI extends JFrame {
 		draw = false;
 		points.add(e.getPoint());
 		sketchPanel.repaint();
+	}
+
+	private void usingLongMouseClicked(MouseEvent e) {
+		// TODO add your code here
 	}
 
 	private void initComponents() {
@@ -100,7 +105,19 @@ public class mainUI extends JFrame {
 		separator8 = new JSeparator();
 		separator9 = new JSeparator();
 		feedbackArea = new JScrollPane();
+//		feedbackArea = new JScrollPane() {
+//			@Override
+//			public void paint(Graphics g) {
+//				paintComponents(g);
+//			}
+//		};
 		feedbackText = new JTextArea();
+//		feedbackText = new JTextArea() {
+//			@Override
+//			public void paint(Graphics g) {
+//				super.paintComponents(g);
+//			}
+//		};
 		toggleButton1 = new JToggleButton();
 		prevButton = new JButton();
 		nextButton = new JButton();
@@ -110,6 +127,12 @@ public class mainUI extends JFrame {
 		undoButton = new JButton();
 		redoButton = new JButton();
 		sketchPanel = new JPanel();
+//		sketchPanel = new JPanel() {
+//			@Override
+//			public void paint(Graphics g) {
+//				super.paint(g);
+//			}
+//		};
 		resultPanel = new JScrollPane();
 		resultList = new JList();
 		resultText = new JLabel();
@@ -177,6 +200,12 @@ public class mainUI extends JFrame {
 
 				//---- usingLong ----
 				usingLong.setText("Long");
+				usingLong.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						usingLongMouseClicked(e);
+					}
+				});
 				usedRecognizerPanel.add(usingLong);
 				usingLong.setBounds(new Rectangle(new Point(68, 15), usingLong.getPreferredSize()));
 
