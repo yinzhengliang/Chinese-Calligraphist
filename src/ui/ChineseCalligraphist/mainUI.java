@@ -39,7 +39,7 @@ public class mainUI extends JFrame {
 		// TODO add your code here
 		sketchPanel.repaint();
 		draw = true;
-		points.clear();
+		//points.clear();
 		points.add(e.getPoint());
 
 		// sketchPanel.removeAll();
@@ -103,49 +103,12 @@ public class mainUI extends JFrame {
 		statusText = new JLabel();
 		separator6 = new JSeparator();
 		feedbackPanel = new JPanel();
-//		feedbackPanel = new JPanel() {
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = 8611698461597054396L;
-//
-//			@Override
-//			public void paintComponent(Graphics g) {
-//				super.paintComponent(g);
-//				setBackground(new Color(255, 255, 153));
-//			}
-//		};
-
 		feedbackHead = new JLabel();
 		separator7 = new JSeparator();
 		separator8 = new JSeparator();
 		separator9 = new JSeparator();
 		feedbackArea = new JScrollPane();
-//		feedbackArea = new JScrollPane() {
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = -841352312804062785L;
-//
-//			@Override
-//			public void paintComponent(Graphics g) {
-//				super.paintComponent(g);
-//				setBackground(new Color(240, 10, 240, 68));
-//			}
-//		};
-		// feedbackText = new JTextArea();
-		feedbackText = new JTextArea() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -3846208201545789570L;
-
-			 @Override
-			 public void paintComponents(Graphics g) {
-				super.paintComponents(g);
-				setBackground(new Color(255, 173, 82, 26));
-			 }
-		};
+		feedbackText = new JTextArea();
 		toggleButton1 = new JToggleButton();
 		prevButton = new JButton();
 		nextButton = new JButton();
@@ -154,25 +117,10 @@ public class mainUI extends JFrame {
 		clearButton = new JButton();
 		undoButton = new JButton();
 		redoButton = new JButton();
-		// sketchPanel = new JPanel();
-		sketchPanel = new JPanel() {
-			@Override
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				if (points.size() > 2) {
-					Point s = points.get(0);
-					for (Point p : points) {
-						g.drawLine((int) p.getX(), (int) p.getY(), (int) s.getX(), (int) s.getY());
-						s = p;
-					}
-				}
-			}
-		};
-		resultPanel = new JScrollPane();
-		resultList = new JList();
-		resultText = new JLabel();
+		sketchPanel = new JPanel();
+		panel1 = new JPanel();
 
-		// ======== this ========
+		//======== this ========
 		setResizable(false);
 		setTitle("Chinese Calligraphist");
 		setMinimumSize(new Dimension(1024, 576));
@@ -180,20 +128,20 @@ public class mainUI extends JFrame {
 		setForeground(Color.black);
 		Container contentPane = getContentPane();
 
-		// ======== menuBar ========
+		//======== menuBar ========
 		{
 
-			// ======== fileMenu ========
+			//======== fileMenu ========
 			{
 				fileMenu.setText("File");
 
-				// ---- confLoadMenu ----
+				//---- confLoadMenu ----
 				confLoadMenu.setText("Load Training Configurations");
 				fileMenu.add(confLoadMenu);
 			}
 			menuBar.add(fileMenu);
 
-			// ======== analysisMenu ========
+			//======== analysisMenu ========
 			{
 				analysisMenu.setText("Analysis");
 			}
@@ -201,35 +149,28 @@ public class mainUI extends JFrame {
 		}
 		setJMenuBar(menuBar);
 
-		// ======== recognizerPanel ========
+		//======== recognizerPanel ========
 		{
 
 			// JFormDesigner evaluation mark
 			recognizerPanel.setBorder(new javax.swing.border.CompoundBorder(
-					new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0,
-							0), "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-							javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog",
-									java.awt.Font.BOLD, 12), java.awt.Color.red), recognizerPanel
-							.getBorder()));
-			recognizerPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-				public void propertyChange(java.beans.PropertyChangeEvent e) {
-					if ("border".equals(e.getPropertyName()))
-						throw new RuntimeException();
-				}
-			});
+				new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+					"JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+					javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+					java.awt.Color.red), recognizerPanel.getBorder())); recognizerPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 			recognizerPanel.setLayout(null);
 
-			// ======== usedRecognizerPanel ========
+			//======== usedRecognizerPanel ========
 			{
 				usedRecognizerPanel.setLayout(null);
 
-				// ---- usedRecognizerLabel ----
+				//---- usedRecognizerLabel ----
 				usedRecognizerLabel.setText("Please choose the recognizer");
 				usedRecognizerPanel.add(usedRecognizerLabel);
 				usedRecognizerLabel.setBounds(5, 0, 175, 15);
 
-				// ---- usingRubine ----
+				//---- usingRubine ----
 				usingRubine.setText("Rubine");
 				usingRubine.addMouseListener(new MouseAdapter() {
 					@Override
@@ -238,10 +179,9 @@ public class mainUI extends JFrame {
 					}
 				});
 				usedRecognizerPanel.add(usingRubine);
-				usingRubine.setBounds(new Rectangle(new Point(0, 15), usingRubine
-						.getPreferredSize()));
+				usingRubine.setBounds(new Rectangle(new Point(0, 15), usingRubine.getPreferredSize()));
 
-				// ---- usingLong ----
+				//---- usingLong ----
 				usingLong.setText("Long");
 				usingLong.addMouseListener(new MouseAdapter() {
 					@Override
@@ -252,34 +192,29 @@ public class mainUI extends JFrame {
 				usedRecognizerPanel.add(usingLong);
 				usingLong.setBounds(new Rectangle(new Point(68, 15), usingLong.getPreferredSize()));
 
-				// ---- usingOneDollar ----
+				//---- usingOneDollar ----
 				usingOneDollar.setText("One Dollar");
 				usedRecognizerPanel.add(usingOneDollar);
-				usingOneDollar.setBounds(new Rectangle(new Point(126, 15), usingOneDollar
-						.getPreferredSize()));
+				usingOneDollar.setBounds(new Rectangle(new Point(126, 15), usingOneDollar.getPreferredSize()));
 
-				// ---- usingHausdroff ----
+				//---- usingHausdroff ----
 				usingHausdroff.setText("Hausdroff");
 				usedRecognizerPanel.add(usingHausdroff);
-				usingHausdroff.setBounds(new Rectangle(new Point(210, 15), usingHausdroff
-						.getPreferredSize()));
+				usingHausdroff.setBounds(new Rectangle(new Point(210, 15), usingHausdroff.getPreferredSize()));
 
-				// ---- usingPaleo ----
+				//---- usingPaleo ----
 				usingPaleo.setText("PaleoSketch");
 				usedRecognizerPanel.add(usingPaleo);
-				usingPaleo.setBounds(new Rectangle(new Point(292, 15), usingPaleo
-						.getPreferredSize()));
+				usingPaleo.setBounds(new Rectangle(new Point(292, 15), usingPaleo.getPreferredSize()));
 				usedRecognizerPanel.add(separator4);
 				separator4.setBounds(180, 0, 220, 5);
 
 				{ // compute preferred size
 					Dimension preferredSize = new Dimension();
-					for (int i = 0; i < usedRecognizerPanel.getComponentCount(); i++) {
+					for(int i = 0; i < usedRecognizerPanel.getComponentCount(); i++) {
 						Rectangle bounds = usedRecognizerPanel.getComponent(i).getBounds();
-						preferredSize.width = Math
-								.max(bounds.x + bounds.width, preferredSize.width);
-						preferredSize.height = Math.max(bounds.y + bounds.height,
-								preferredSize.height);
+						preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+						preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
 					}
 					Insets insets = usedRecognizerPanel.getInsets();
 					preferredSize.width += insets.right;
@@ -291,50 +226,46 @@ public class mainUI extends JFrame {
 			recognizerPanel.add(usedRecognizerPanel);
 			usedRecognizerPanel.setBounds(0, 0, 395, 45);
 
-			// ======== displayRecognizerPanel ========
+			//======== displayRecognizerPanel ========
 			{
 				displayRecognizerPanel.setLayout(null);
 
-				// ---- displayRecognizerLabel ----
+				//---- displayRecognizerLabel ----
 				displayRecognizerLabel.setText("Show the recognition of the recognizer");
 				displayRecognizerPanel.add(displayRecognizerLabel);
-				displayRecognizerLabel.setBounds(0, 0, 230,
-						displayRecognizerLabel.getPreferredSize().height);
+				displayRecognizerLabel.setBounds(0, 0, 230, displayRecognizerLabel.getPreferredSize().height);
 
-				// ---- displayOneDollar ----
+				//---- displayOneDollar ----
 				displayOneDollar.setText("One Dollar");
 				displayRecognizerPanel.add(displayOneDollar);
 				displayOneDollar.setBounds(348, 15, displayOneDollar.getPreferredSize().width, 23);
 
-				// ---- displayLongOrigin ----
+				//---- displayLongOrigin ----
 				displayLongOrigin.setText("Long Original");
 				displayRecognizerPanel.add(displayLongOrigin);
-				displayLongOrigin
-						.setBounds(255, 15, displayLongOrigin.getPreferredSize().width, 23);
+				displayLongOrigin.setBounds(255, 15, displayLongOrigin.getPreferredSize().width, 23);
 
-				// ---- displayLongNN ----
+				//---- displayLongNN ----
 				displayLongNN.setText("Long NN");
 				displayRecognizerPanel.add(displayLongNN);
 				displayLongNN.setBounds(184, 15, displayLongNN.getPreferredSize().width, 23);
 
-				// ---- displayRubineOrigin ----
+				//---- displayRubineOrigin ----
 				displayRubineOrigin.setText("Rubine Original");
 				displayRecognizerPanel.add(displayRubineOrigin);
-				displayRubineOrigin.setBounds(81, 15, displayRubineOrigin.getPreferredSize().width,
-						23);
+				displayRubineOrigin.setBounds(81, 15, displayRubineOrigin.getPreferredSize().width, 23);
 
-				// ---- displayRubineNN ----
+				//---- displayRubineNN ----
 				displayRubineNN.setText("Rubine NN");
 				displayRecognizerPanel.add(displayRubineNN);
 				displayRubineNN.setBounds(0, 15, displayRubineNN.getPreferredSize().width, 23);
 
-				// ---- displayPaleo ----
+				//---- displayPaleo ----
 				displayPaleo.setText("PaleoSketch");
 				displayRecognizerPanel.add(displayPaleo);
-				displayPaleo.setBounds(new Rectangle(new Point(508, 15), displayPaleo
-						.getPreferredSize()));
+				displayPaleo.setBounds(new Rectangle(new Point(508, 15), displayPaleo.getPreferredSize()));
 
-				// ---- displayHausdroff ----
+				//---- displayHausdroff ----
 				displayHausdroff.setText("Hausdroff");
 				displayRecognizerPanel.add(displayHausdroff);
 				displayHausdroff.setBounds(429, 15, displayHausdroff.getPreferredSize().width, 23);
@@ -343,12 +274,10 @@ public class mainUI extends JFrame {
 
 				{ // compute preferred size
 					Dimension preferredSize = new Dimension();
-					for (int i = 0; i < displayRecognizerPanel.getComponentCount(); i++) {
+					for(int i = 0; i < displayRecognizerPanel.getComponentCount(); i++) {
 						Rectangle bounds = displayRecognizerPanel.getComponent(i).getBounds();
-						preferredSize.width = Math
-								.max(bounds.x + bounds.width, preferredSize.width);
-						preferredSize.height = Math.max(bounds.y + bounds.height,
-								preferredSize.height);
+						preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+						preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
 					}
 					Insets insets = displayRecognizerPanel.getInsets();
 					preferredSize.width += insets.right;
@@ -360,7 +289,7 @@ public class mainUI extends JFrame {
 			recognizerPanel.add(displayRecognizerPanel);
 			displayRecognizerPanel.setBounds(415, 0, 610, 45);
 
-			// ---- separator2 ----
+			//---- separator2 ----
 			separator2.setOrientation(SwingConstants.VERTICAL);
 			recognizerPanel.add(separator2);
 			separator2.setBounds(395, -5, 5, 60);
@@ -369,7 +298,7 @@ public class mainUI extends JFrame {
 
 			{ // compute preferred size
 				Dimension preferredSize = new Dimension();
-				for (int i = 0; i < recognizerPanel.getComponentCount(); i++) {
+				for(int i = 0; i < recognizerPanel.getComponentCount(); i++) {
 					Rectangle bounds = recognizerPanel.getComponent(i).getBounds();
 					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
 					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -382,12 +311,12 @@ public class mainUI extends JFrame {
 			}
 		}
 
-		// ======== statusPanel ========
+		//======== statusPanel ========
 		{
 			statusPanel.setBackground(new Color(51, 255, 102));
 			statusPanel.setLayout(null);
 
-			// ---- statusText ----
+			//---- statusText ----
 			statusText.setText("sadfasfaer");
 			statusPanel.add(statusText);
 			statusText.setBounds(0, 0, 1020, 25);
@@ -396,7 +325,7 @@ public class mainUI extends JFrame {
 
 			{ // compute preferred size
 				Dimension preferredSize = new Dimension();
-				for (int i = 0; i < statusPanel.getComponentCount(); i++) {
+				for(int i = 0; i < statusPanel.getComponentCount(); i++) {
 					Rectangle bounds = statusPanel.getComponent(i).getBounds();
 					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
 					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -409,12 +338,12 @@ public class mainUI extends JFrame {
 			}
 		}
 
-		// ======== feedbackPanel ========
+		//======== feedbackPanel ========
 		{
-			 feedbackPanel.setBackground(new Color(255, 255, 153));
+			feedbackPanel.setBackground(new Color(255, 255, 153));
 			feedbackPanel.setLayout(null);
 
-			// ---- feedbackHead ----
+			//---- feedbackHead ----
 			feedbackHead.setText("Feedbacks");
 			feedbackPanel.add(feedbackHead);
 			feedbackHead.setBounds(10, 5, 240, feedbackHead.getPreferredSize().height);
@@ -425,14 +354,13 @@ public class mainUI extends JFrame {
 			feedbackPanel.add(separator9);
 			separator9.setBounds(30, 35, 305, 12);
 
-			// ======== feedbackArea ========
+			//======== feedbackArea ========
 			{
-				// TODO CHANGE1
 				feedbackArea.setBackground(new Color(240, 10, 240, 68));
 
-				// ---- feedbackText ----
+				//---- feedbackText ----
 				feedbackText.setEditable(false);
-				// feedbackText.setBackground(new Color(255, 173, 82, 26));
+				feedbackText.setBackground(new Color(255, 173, 82, 26));
 				feedbackArea.setViewportView(feedbackText);
 			}
 			feedbackPanel.add(feedbackArea);
@@ -440,7 +368,7 @@ public class mainUI extends JFrame {
 
 			{ // compute preferred size
 				Dimension preferredSize = new Dimension();
-				for (int i = 0; i < feedbackPanel.getComponentCount(); i++) {
+				for(int i = 0; i < feedbackPanel.getComponentCount(); i++) {
 					Rectangle bounds = feedbackPanel.getComponent(i).getBounds();
 					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
 					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -453,31 +381,31 @@ public class mainUI extends JFrame {
 			}
 		}
 
-		// ---- toggleButton1 ----
+		//---- toggleButton1 ----
 		toggleButton1.setText("View/Draw");
 
-		// ---- prevButton ----
+		//---- prevButton ----
 		prevButton.setText("Prev");
 
-		// ---- nextButton ----
+		//---- nextButton ----
 		nextButton.setText("Next");
 
-		// ---- newButton ----
+		//---- newButton ----
 		newButton.setText("New");
 
-		// ---- saveButton ----
+		//---- saveButton ----
 		saveButton.setText("Save");
 
-		// ---- clearButton ----
+		//---- clearButton ----
 		clearButton.setText("Clear");
 
-		// ---- undoButton ----
+		//---- undoButton ----
 		undoButton.setText("Undo");
 
-		// ---- redoButton ----
+		//---- redoButton ----
 		redoButton.setText("Redo");
 
-		// ======== sketchPanel ========
+		//======== sketchPanel ========
 		{
 			sketchPanel.setBackground(new Color(84, 255, 239));
 			sketchPanel.addMouseListener(new MouseAdapter() {
@@ -485,7 +413,6 @@ public class mainUI extends JFrame {
 				public void mousePressed(MouseEvent e) {
 					sketchPanelMousePressed(e);
 				}
-
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					sketchPanelMouseReleased(e);
@@ -501,7 +428,7 @@ public class mainUI extends JFrame {
 
 			{ // compute preferred size
 				Dimension preferredSize = new Dimension();
-				for (int i = 0; i < sketchPanel.getComponentCount(); i++) {
+				for(int i = 0; i < sketchPanel.getComponentCount(); i++) {
 					Rectangle bounds = sketchPanel.getComponent(i).getBounds();
 					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
 					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -514,229 +441,91 @@ public class mainUI extends JFrame {
 			}
 		}
 
-		// ======== resultPanel ========
+		//======== panel1 ========
 		{
-			resultPanel.setViewportView(resultList);
-		}
+			panel1.setBackground(Color.white);
+			panel1.setLayout(null);
 
-		// ---- resultText ----
-		resultText.setText("R-Result ");
-		resultText.setBackground(new Color(204, 204, 255));
+			{ // compute preferred size
+				Dimension preferredSize = new Dimension();
+				for(int i = 0; i < panel1.getComponentCount(); i++) {
+					Rectangle bounds = panel1.getComponent(i).getBounds();
+					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+				}
+				Insets insets = panel1.getInsets();
+				preferredSize.width += insets.right;
+				preferredSize.height += insets.bottom;
+				panel1.setMinimumSize(preferredSize);
+				panel1.setPreferredSize(preferredSize);
+			}
+		}
 
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);
-		contentPaneLayout
-				.setHorizontalGroup(contentPaneLayout
-						.createParallelGroup()
-						.addGroup(
-								contentPaneLayout
-										.createSequentialGroup()
-										.addGroup(
-												contentPaneLayout
-														.createParallelGroup()
-														.addComponent(statusPanel,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addGroup(
-																contentPaneLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				contentPaneLayout
-																						.createParallelGroup(
-																								GroupLayout.Alignment.LEADING,
-																								false)
-																						.addGroup(
-																								contentPaneLayout
-																										.createSequentialGroup()
-																										.addGroup(
-																												contentPaneLayout
-																														.createParallelGroup()
-																														.addGroup(
-																																contentPaneLayout
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				toggleButton1)
-																																		.addGap(7,
-																																				7,
-																																				7)
-																																		.addComponent(
-																																				prevButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				73,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(12,
-																																				12,
-																																				12)
-																																		.addComponent(
-																																				nextButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				68,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(7,
-																																				7,
-																																				7)
-																																		.addComponent(
-																																				newButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				72,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(3,
-																																				3,
-																																				3)
-																																		.addComponent(
-																																				saveButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				75,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(10,
-																																				10,
-																																				10)
-																																		.addComponent(
-																																				clearButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				79,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(6,
-																																				6,
-																																				6)
-																																		.addComponent(
-																																				undoButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				79,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(6,
-																																				6,
-																																				6)
-																																		.addComponent(
-																																				redoButton,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				71,
-																																				GroupLayout.PREFERRED_SIZE))
-																														.addGroup(
-																																contentPaneLayout
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				sketchPanel,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				560,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addPreferredGap(
-																																				LayoutStyle.ComponentPlacement.RELATED)
-																																		.addGroup(
-																																				contentPaneLayout
-																																						.createParallelGroup()
-																																						.addComponent(
-																																								resultPanel,
-																																								GroupLayout.PREFERRED_SIZE,
-																																								100,
-																																								GroupLayout.PREFERRED_SIZE)
-																																						.addGroup(
-																																								GroupLayout.Alignment.TRAILING,
-																																								contentPaneLayout
-																																										.createSequentialGroup()
-																																										.addComponent(
-																																												resultText,
-																																												GroupLayout.PREFERRED_SIZE,
-																																												62,
-																																												GroupLayout.PREFERRED_SIZE)
-																																										.addGap(17,
-																																												17,
-																																												17)))))
-																										.addPreferredGap(
-																												LayoutStyle.ComponentPlacement.RELATED)
-																										.addComponent(
-																												feedbackPanel,
-																												GroupLayout.DEFAULT_SIZE,
-																												GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE))
-																						.addComponent(
-																								separator1,
-																								GroupLayout.PREFERRED_SIZE,
-																								1024,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								recognizerPanel,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addGap(0, 0,
-																				Short.MAX_VALUE)))
-										.addContainerGap()));
-		contentPaneLayout
-				.setVerticalGroup(contentPaneLayout
-						.createParallelGroup()
-						.addGroup(
-								contentPaneLayout
-										.createSequentialGroup()
-										.addComponent(separator1, GroupLayout.PREFERRED_SIZE, 5,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(recognizerPanel, GroupLayout.PREFERRED_SIZE,
-												46, GroupLayout.PREFERRED_SIZE)
-										.addGap(1, 1, 1)
-										.addGroup(
-												contentPaneLayout
-														.createParallelGroup()
-														.addGroup(
-																contentPaneLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				contentPaneLayout
-																						.createParallelGroup()
-																						.addComponent(
-																								sketchPanel,
-																								GroupLayout.DEFAULT_SIZE,
-																								399,
-																								Short.MAX_VALUE)
-																						.addGroup(
-																								contentPaneLayout
-																										.createSequentialGroup()
-																										.addGap(5,
-																												5,
-																												5)
-																										.addComponent(
-																												resultText,
-																												GroupLayout.PREFERRED_SIZE,
-																												23,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(1,
-																												1,
-																												1)
-																										.addComponent(
-																												resultPanel)))
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.RELATED)
-																		.addGroup(
-																				contentPaneLayout
-																						.createParallelGroup()
-																						.addComponent(
-																								toggleButton1)
-																						.addComponent(
-																								prevButton)
-																						.addComponent(
-																								nextButton)
-																						.addComponent(
-																								newButton)
-																						.addComponent(
-																								saveButton)
-																						.addComponent(
-																								clearButton)
-																						.addComponent(
-																								undoButton)
-																						.addComponent(
-																								redoButton)))
-														.addComponent(feedbackPanel,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(statusPanel, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)));
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addComponent(statusPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addGroup(contentPaneLayout.createSequentialGroup()
+									.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addGroup(contentPaneLayout.createSequentialGroup()
+											.addComponent(toggleButton1)
+											.addGap(7, 7, 7)
+											.addComponent(prevButton, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+											.addGap(12, 12, 12)
+											.addComponent(nextButton, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+											.addGap(7, 7, 7)
+											.addComponent(newButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+											.addGap(3, 3, 3)
+											.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+											.addGap(10, 10, 10)
+											.addComponent(clearButton, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+											.addGap(6, 6, 6)
+											.addComponent(undoButton, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+											.addGap(6, 6, 6)
+											.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+										.addComponent(sketchPanel, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+										.addComponent(panel1, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(feedbackPanel, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
+								.addComponent(separator1, GroupLayout.PREFERRED_SIZE, 1024, GroupLayout.PREFERRED_SIZE)
+								.addComponent(recognizerPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(0, 0, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addComponent(separator1, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(recognizerPanel, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+					.addGap(1, 1, 1)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(sketchPanel, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(contentPaneLayout.createParallelGroup()
+								.addComponent(toggleButton1)
+								.addComponent(prevButton)
+								.addComponent(nextButton)
+								.addComponent(newButton)
+								.addComponent(saveButton)
+								.addComponent(clearButton)
+								.addComponent(undoButton)
+								.addComponent(redoButton)))
+						.addComponent(feedbackPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(statusPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
 		setLocationRelativeTo(getOwner());
 
-		// ---- DisplayRecognizer ----
+		//---- DisplayRecognizer ----
 		ButtonGroup DisplayRecognizer = new ButtonGroup();
 		DisplayRecognizer.add(displayOneDollar);
 		DisplayRecognizer.add(displayLongOrigin);
@@ -745,7 +534,6 @@ public class mainUI extends JFrame {
 		DisplayRecognizer.add(displayRubineNN);
 		DisplayRecognizer.add(displayPaleo);
 		DisplayRecognizer.add(displayHausdroff);
-		// JFormDesigner - End of component initialization
 		// //GEN-END:initComponents
 	}
 
@@ -797,8 +585,6 @@ public class mainUI extends JFrame {
 	private JButton undoButton;
 	private JButton redoButton;
 	private JPanel sketchPanel;
-	private JScrollPane resultPanel;
-	private JList resultList;
-	private JLabel resultText;
+	private JPanel panel1;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }
