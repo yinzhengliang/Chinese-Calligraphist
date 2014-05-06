@@ -4,10 +4,19 @@ public class Point {
 	double x = 0.0;
 	double y = 0.0;
 	double time = 0.0;
+	String id = "";
 	
 	public Point() {
 	}
 
+	public Point(double x, double y, double time, String id) {
+		this.x = x;
+		this.y = y;
+		this.time = time;
+		this.id = id;
+		
+	}
+	
 	public Point(double x, double y, double time) {
 		this.x = x;
 		this.y = y;
@@ -29,6 +38,10 @@ public class Point {
 	
 	public Double getTime() {
 		return time;
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	public Double distanceTo(Point target) {
