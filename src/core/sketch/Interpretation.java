@@ -29,6 +29,6 @@ public class Interpretation implements Comparable<Interpretation> {
 		if(this.confidence==other.confidence){
             return this.name.compareTo(other.name);
         }
-        return (int) (other.confidence-this.confidence);
+        return (int) (this.confidence-other.confidence);
 	}
 }

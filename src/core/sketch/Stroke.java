@@ -90,4 +90,11 @@ public class Stroke {
 		recalcBoundingBox();
 		recalcLength();
 	}
+	
+	public void copy(Stroke target) {
+		clear();
+		for (Point point : target.getPoints()) {
+			this.addPoint(new Point(point.getX(), point.getY(), point.getTime(), point.getId()));
+		}
+	}
 }

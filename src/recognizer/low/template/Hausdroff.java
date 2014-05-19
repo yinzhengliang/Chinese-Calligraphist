@@ -2,6 +2,7 @@ package recognizer.low.template;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,8 +17,9 @@ import recognizer.IRecognizer;
 import recognizer.Preprocessor;
 
 public class Hausdroff implements IRecognizer {
-	Map<String, List<Stroke>> templates = null;
-	private String templates_folder = "C:/Users/Yin/Desktop/basic_strokes";
+	Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
+	Stroke stroke_to_recognize = new Stroke();
+	private String templates_folder = "C:/Users/Yin/Desktop/templates";
 	
 	public Hausdroff() {
 		loadTemplates();
@@ -26,27 +28,32 @@ public class Hausdroff implements IRecognizer {
 	@Override
 	public List<Interpretation> recognize(Stroke stroke) {
 		// TODO Auto-generated method stub
+		preprocess(stroke);
+		
 		Set<Interpretation> interpretations = new TreeSet<Interpretation>();
 		double normalizer = Double.MAX_VALUE;
 		for (Map.Entry<String, List<Stroke>> entry : templates.entrySet()) {
 			String name = entry.getKey();
 			double distance = 0.0;
+			double min_distance = Double.MAX_VALUE;
 			for (Stroke template : entry.getValue()) {
-				double cur_distance = h_distance(template, stroke);
+				double cur_distance = h_distance(template, stroke_to_recognize);
 				distance += cur_distance;
+				min_distance = (min_distance < cur_distance? min_distance : cur_distance);
 				normalizer = (normalizer < cur_distance? normalizer : cur_distance);
 			}
-			interpretations.add(new Interpretation(name, 1.0 + distance / entry.getValue().size()));
+			interpretations.add(new Interpretation(name,  (distance / entry.getValue().size() + min_distance) / 2.0));
 		}
 		List<Interpretation> results = new ArrayList<Interpretation>();
 		
-		normalizer += 1;
+//		normalizer += 1;
+		System.out.println(normalizer);
 		for (Interpretation interpretation : interpretations) {
 			double confidence = normalizer / interpretation.getConfidence();
-			if (confidence > 0.5) {
+//			if (confidence > 0.5) {
 				interpretation.setConfidence(confidence);
 				results.add(interpretation);
-			}
+//			}
 		}
 		return results;
 	}
@@ -54,8 +61,9 @@ public class Hausdroff implements IRecognizer {
 	@Override
 	public void preprocess(Stroke stroke) {
 		// TODO Auto-generated method stub
-		Stroke stroke_to_recognize = new Stroke();
-		stroke_to_recognize = IRecognizer.preprocesser.translate(stroke);
+		stroke_to_recognize.clear();
+		stroke_to_recognize.copy(stroke);
+		stroke_to_recognize = IRecognizer.preprocesser.translate(stroke_to_recognize);
 		stroke_to_recognize = IRecognizer.preprocesser.scale(stroke_to_recognize, 40);
 		stroke_to_recognize = IRecognizer.preprocesser.resample(stroke_to_recognize, 40);
 	}
@@ -69,7 +77,7 @@ public class Hausdroff implements IRecognizer {
 		
 		for (File file : files) {
 	        if (file.isDirectory()) {
-	            System.out.println("Directory: " + file.getAbsolutePath());
+//	            System.out.println("Directory: " + file.getAbsolutePath());
 	            String name = file.getName();
 	            templates.put(name, new ArrayList<Stroke>());
 	            

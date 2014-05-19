@@ -4,6 +4,7 @@
 
 package ui.ChineseCalligraphist;
 
+import core.sketch.Interpretation;
 import core.sketch.Stroke;
 import core.sketch.Point;
 
@@ -16,6 +17,8 @@ import java.util.Stack;
 
 import javax.swing.*;
 
+import recognizer.low.template.Hausdroff;
+
 /**
  * @author Zhengliang Yin
  */
@@ -27,6 +30,7 @@ public class mainUI extends JFrame {
 	//private List<Point> points = new ArrayList<Point>();
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Stack<Stroke> undoStrokes = new Stack<Stroke>();
+	private Hausdroff recognizer = new Hausdroff();
 
 	private static final long serialVersionUID = 1L;
   
@@ -66,6 +70,14 @@ public class mainUI extends JFrame {
 
 	private void sketchPanelMouseReleased(MouseEvent e) {
 		// TODO add your code here
+		System.out.println("======================result=====================");
+		List<Interpretation> interpretations = recognizer.recognize(strokes.get(strokes.size() - 1));
+		for (Interpretation interpretation : interpretations) {
+			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		 sketchPanel.repaint();
 	}
 

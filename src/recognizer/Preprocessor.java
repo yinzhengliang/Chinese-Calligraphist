@@ -71,5 +71,5 @@ public class Preprocessor {
 		stroke.recalcLength();
 		return stroke;
 	}
-	
+
 }
