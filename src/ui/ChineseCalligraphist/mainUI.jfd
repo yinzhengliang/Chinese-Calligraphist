@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp statusPanel:::::x, seq {par l:::p {seq l {par l:::p {seq {comp toggleButton1:::p::p, space :7:7:p, comp prevButton:::p:73:p, space :12:12:p, comp nextButton:::p:68:p, space :7:7:p, comp newButton:::p:72:p, space :3:3:p, comp saveButton:::p:75:p, space :10:10:p, comp clearButton:::p:79:p, space :6:6:p, comp undoButton:::p:79:p, space :6:6:p, comp redoButton:::p:71:p}, comp sketchPanel::::654:x, comp panel1::l::654:x}, space :::p, comp feedbackPanel::::368:x}, comp separator1:::p:1024:p, comp recognizerPanel::l:p::p}, space :0:0:x}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {comp separator1:::p:5:p, space :p::p, comp recognizerPanel:::p:46:p, space :p:1:p, par l {seq {comp panel1:::p:100:p, space :::x, comp sketchPanel:::p:334:p, space :::p, par l {comp toggleButton1:::p::p, comp prevButton:::p::p, comp nextButton:::p::p, comp newButton:::p::p, comp saveButton:::p::p, comp clearButton:::p::p, comp undoButton:::p::p, comp redoButton:::p::p}}, comp feedbackPanel:::::x}, space :::p, comp statusPanel:::p::p}}"
+			"$horizontalGroup": "par l {seq {par l {comp statusPanel:::::x, seq {par l:::p {seq l {par l:::p {seq {comp toggleButton1:::p::p, space :7:7:p, comp prevButton:::p:73:p, space :12:12:p, comp nextButton:::p:68:p, space :7:7:p, comp newButton:::p:72:p, space :3:3:p, comp saveButton:::p:75:p, space :10:10:p, comp clearButton:::p:79:p, space :6:6:p, comp undoButton:::p:79:p, space :6:6:p, comp redoButton:::p:71:p}, comp sketchPanel::::654:x, comp questionPanel::l::654:x}, space :::p, comp feedbackPanel::::368:x}, comp separator1:::p:1024:p, comp recognizerPanel::l:p::p}, space :0:0:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp separator1:::p:5:p, space :p::p, comp recognizerPanel:::p:46:p, space :p:1:p, par l {seq {comp questionPanel:::p:100:p, space :::x, comp sketchPanel:::p:303:p, space :::p, par l {comp toggleButton1:::p::p, comp prevButton:::p::p, comp nextButton:::p::p, comp newButton:::p::p, comp saveButton:::p::p, comp clearButton:::p::p, comp undoButton:::p::p, comp redoButton:::p::p}}, comp feedbackPanel:::::x}, space :::p, comp statusPanel:::p::p}}"
 		} ) {
 			name: "this"
 			"resizable": false
@@ -277,6 +277,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "clearButton"
 				"text": "Clear"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "clearButtonActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "undoButton"
@@ -294,7 +295,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "sketchPanelMouseReleased", true ) )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
-				name: "panel1"
+				name: "questionPanel"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {

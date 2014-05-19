@@ -6,9 +6,9 @@ import core.sketch.Interpretation;
 import core.sketch.Stroke;
 
 public interface IRecognizer {
-	public static Preprosessor processer = new Preprosessor();
+	public Preprocessor preprocesser = new Preprocessor();
 	
 	public abstract List<Interpretation> recognize(Stroke stroke);
 	
-	public abstract void preprosessing(Stroke stroke);
+	public abstract void preprocess(Stroke stroke);
 }

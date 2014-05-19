@@ -15,8 +15,8 @@ public class Paleo implements IRecognizer {
 	}
 
 	@Override
-	public void preprosessing(Stroke stroke) {
-		// TODO Auto-generated method stub
+	public void preprocess(Stroke stroke) {
+		// TODO Auto-generatesd method stub
 		
 	}
 

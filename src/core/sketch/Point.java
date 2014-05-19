@@ -14,7 +14,6 @@ public class Point {
 		this.y = y;
 		this.time = time;
 		this.id = id;
-		
 	}
 	
 	public Point(double x, double y, double time) {
@@ -23,20 +22,25 @@ public class Point {
 		this.time = time;
 	}
 	
+	public Point(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	public void move(double delta_x, double delta_y) {
 		x += delta_x;
 		y += delta_y;
 	}
 	
-	public Double getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public Double getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public Double getTime() {
+	public double getTime() {
 		return time;
 	}
 	
@@ -50,5 +54,10 @@ public class Point {
 		Double yDiff = this.y - target.y;
 		distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
 		return distance;
+	}
+	
+	public void scaleFromOrigin(double x_multi, double y_multi) {
+		x *= x_multi;
+		y *= y_multi;
 	}
 }

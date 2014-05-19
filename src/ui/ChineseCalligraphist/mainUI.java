@@ -4,10 +4,15 @@
 
 package ui.ChineseCalligraphist;
 
+import core.sketch.Stroke;
+import core.sketch.Point;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import javax.swing.*;
 
@@ -18,12 +23,13 @@ public class mainUI extends JFrame {
 	/**
 	 * 
 	 */
-
-	private boolean draw = false;
-	private List<Point> points = new ArrayList<Point>();
+ 
+	//private List<Point> points = new ArrayList<Point>();
+	private List<Stroke> strokes = new ArrayList<Stroke>();
+	private Stack<Stroke> undoStrokes = new Stack<Stroke>();
 
 	private static final long serialVersionUID = 1L;
-
+  
 	public mainUI() {
 		initComponents();
 	}
@@ -38,9 +44,10 @@ public class mainUI extends JFrame {
 	private void sketchPanelMousePressed(MouseEvent e) {
 		// TODO add your code here
 		sketchPanel.repaint();
-		draw = true;
 		//points.clear();
-		points.add(e.getPoint());
+		strokes.add(new Stroke());
+		undoStrokes.clear();
+		strokes.get(strokes.size() - 1).addPoint(new Point(e.getX(), e.getY()));
 
 		// sketchPanel.removeAll();
 		// Graphics g = new Graphics();
@@ -49,24 +56,43 @@ public class mainUI extends JFrame {
 
 	private void sketchPanelMouseDragged(MouseEvent e) {
 		// TODO add your code here
-		if (draw == true) {
-			Point lastP = points.get(points.size() - 1);
-			sketchPanel.getGraphics().drawLine(lastP.x, lastP.y, e.getX(), e.getY());
-			points.add(e.getPoint());
+//			Point lastP = points.get(points.size() - 1);
+//			sketchPanel.getGraphics().drawLine(lastP.x, lastP.y, e.getX(), e.getY());
+			strokes.get(strokes.size() - 1).addPoint(new Point(e.getX(), e.getY()));
+			sketchPanel.repaint();
 			// sketchPanel.repaint();
 			// feedbackText.append("X: " + e.getX() + " Y: " + e.getY() + "\n");
-		}
 	}
 
 	private void sketchPanelMouseReleased(MouseEvent e) {
 		// TODO add your code here
-		draw = false;
-		points.add(e.getPoint());
-		// sketchPanel.repaint();
+		 sketchPanel.repaint();
 	}
 
 	private void usingLongMouseClicked(MouseEvent e) {
 		// TODO add your code here
+	}
+	
+
+	private void clearButtonActionPerformed(ActionEvent e) {
+		strokes.clear();
+		undoStrokes.clear();
+		sketchPanel.repaint();
+	}
+	
+	private void undoButtonActionPerformed(ActionEvent e) {
+		if (strokes.size() > 0) {
+			undoStrokes.add(strokes.get(strokes.size() - 1));
+			strokes.remove(strokes.size() - 1);
+			sketchPanel.repaint();
+		}
+	}
+	
+	private void redoButtonActionPerformed(ActionEvent e) {
+		if (undoStrokes.size() > 0) {
+			strokes.add(undoStrokes.pop());
+			sketchPanel.repaint();
+		}
 	}
 
 	private void initComponents() {
@@ -108,7 +134,19 @@ public class mainUI extends JFrame {
 		separator8 = new JSeparator();
 		separator9 = new JSeparator();
 		feedbackArea = new JScrollPane();
-		feedbackText = new JTextArea();
+//		feedbackText = new JTextArea();
+		feedbackText = new JTextArea() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -3846208201545789570L;
+
+			 @Override
+			 public void paintComponents(Graphics g) {
+				super.paintComponents(g);
+				setBackground(new Color(255, 173, 82, 26));
+			 }
+		};
 		toggleButton1 = new JToggleButton();
 		prevButton = new JButton();
 		nextButton = new JButton();
@@ -117,8 +155,27 @@ public class mainUI extends JFrame {
 		clearButton = new JButton();
 		undoButton = new JButton();
 		redoButton = new JButton();
-		sketchPanel = new JPanel();
-		panel1 = new JPanel();
+//		sketchPanel = new JPanel();
+		sketchPanel = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				for (Stroke stroke : strokes) {
+					if (stroke.getPoints().size() > 2) {
+						Point s = stroke.getPoints().get(0);
+						for (Point p : stroke.getPoints()) {
+							Graphics2D g2 = (Graphics2D) g;
+			                g2.setStroke(new BasicStroke(3));
+//			                g2.draw(new Line2D.Float(30, 20, 80, 90));
+							
+							g2.drawLine((int) p.getX(), (int) p.getY(), (int) s.getX(), (int) s.getY());
+							s = p;
+						}
+					}
+				}
+			}
+		};
+		questionPanel = new JPanel();
 
 		//======== this ========
 		setResizable(false);
@@ -151,13 +208,15 @@ public class mainUI extends JFrame {
 
 		//======== recognizerPanel ========
 		{
-
-			// JFormDesigner evaluation mark
-			recognizerPanel.setBorder(new javax.swing.border.CompoundBorder(
-				new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-					"JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-					javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-					java.awt.Color.red), recognizerPanel.getBorder())); recognizerPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+			Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+			recognizerPanel.setCursor(cursor);
+			
+//			// JFormDesigner evaluation mark
+//			recognizerPanel.setBorder(new javax.swing.border.CompoundBorder(
+//				new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+//					"JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+//					javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+//					java.awt.Color.red), recognizerPanel.getBorder())); recognizerPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 			recognizerPanel.setLayout(null);
 
@@ -179,7 +238,7 @@ public class mainUI extends JFrame {
 					}
 				});
 				usedRecognizerPanel.add(usingRubine);
-				usingRubine.setBounds(new Rectangle(new Point(0, 15), usingRubine.getPreferredSize()));
+				usingRubine.setBounds(new Rectangle(new java.awt.Point(0, 15), usingRubine.getPreferredSize()));
 
 				//---- usingLong ----
 				usingLong.setText("Long");
@@ -190,22 +249,22 @@ public class mainUI extends JFrame {
 					}
 				});
 				usedRecognizerPanel.add(usingLong);
-				usingLong.setBounds(new Rectangle(new Point(68, 15), usingLong.getPreferredSize()));
+				usingLong.setBounds(new Rectangle(new java.awt.Point(68, 15), usingLong.getPreferredSize()));
 
 				//---- usingOneDollar ----
 				usingOneDollar.setText("One Dollar");
 				usedRecognizerPanel.add(usingOneDollar);
-				usingOneDollar.setBounds(new Rectangle(new Point(126, 15), usingOneDollar.getPreferredSize()));
+				usingOneDollar.setBounds(new Rectangle(new java.awt.Point(126, 15), usingOneDollar.getPreferredSize()));
 
 				//---- usingHausdroff ----
 				usingHausdroff.setText("Hausdroff");
 				usedRecognizerPanel.add(usingHausdroff);
-				usingHausdroff.setBounds(new Rectangle(new Point(210, 15), usingHausdroff.getPreferredSize()));
+				usingHausdroff.setBounds(new Rectangle(new java.awt.Point(210, 15), usingHausdroff.getPreferredSize()));
 
 				//---- usingPaleo ----
 				usingPaleo.setText("PaleoSketch");
 				usedRecognizerPanel.add(usingPaleo);
-				usingPaleo.setBounds(new Rectangle(new Point(292, 15), usingPaleo.getPreferredSize()));
+				usingPaleo.setBounds(new Rectangle(new java.awt.Point(292, 15), usingPaleo.getPreferredSize()));
 				usedRecognizerPanel.add(separator4);
 				separator4.setBounds(180, 0, 220, 5);
 
@@ -263,7 +322,7 @@ public class mainUI extends JFrame {
 				//---- displayPaleo ----
 				displayPaleo.setText("PaleoSketch");
 				displayRecognizerPanel.add(displayPaleo);
-				displayPaleo.setBounds(new Rectangle(new Point(508, 15), displayPaleo.getPreferredSize()));
+				displayPaleo.setBounds(new Rectangle(new java.awt.Point(508, 15), displayPaleo.getPreferredSize()));
 
 				//---- displayHausdroff ----
 				displayHausdroff.setText("Hausdroff");
@@ -340,6 +399,8 @@ public class mainUI extends JFrame {
 
 		//======== feedbackPanel ========
 		{
+			Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+			feedbackPanel.setCursor(cursor);
 			feedbackPanel.setBackground(new Color(255, 255, 153));
 			feedbackPanel.setLayout(null);
 
@@ -360,7 +421,7 @@ public class mainUI extends JFrame {
 
 				//---- feedbackText ----
 				feedbackText.setEditable(false);
-				feedbackText.setBackground(new Color(255, 173, 82, 26));
+//				feedbackText.setBackground(new Color(255, 173, 82, 26));
 				feedbackArea.setViewportView(feedbackText);
 			}
 			feedbackPanel.add(feedbackArea);
@@ -398,15 +459,40 @@ public class mainUI extends JFrame {
 
 		//---- clearButton ----
 		clearButton.setText("Clear");
+		clearButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clearButtonActionPerformed(e);
+			}
+		});
 
 		//---- undoButton ----
 		undoButton.setText("Undo");
+		undoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				undoButtonActionPerformed(e);
+			}
+		});
 
 		//---- redoButton ----
 		redoButton.setText("Redo");
+		redoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				redoButtonActionPerformed(e);
+			}
+		});
 
 		//======== sketchPanel ========
 		{
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			Image image = toolkit.createImage("C:/Users/Yin/workspace/Chinese-Calligraphist/images/pencil.png");
+			java.awt.Point hotSpot = new java.awt.Point(0,30);
+			
+			Cursor cursor = toolkit.createCustomCursor(image, hotSpot, "pencil");
+			sketchPanel.setCursor(cursor);
+			
 			sketchPanel.setBackground(new Color(84, 255, 239));
 			sketchPanel.addMouseListener(new MouseAdapter() {
 				@Override
@@ -441,23 +527,23 @@ public class mainUI extends JFrame {
 			}
 		}
 
-		//======== panel1 ========
+		//======== questionPanel ========
 		{
-			panel1.setBackground(Color.white);
-			panel1.setLayout(null);
+			questionPanel.setBackground(Color.white);
+			questionPanel.setLayout(null);
 
 			{ // compute preferred size
 				Dimension preferredSize = new Dimension();
-				for(int i = 0; i < panel1.getComponentCount(); i++) {
-					Rectangle bounds = panel1.getComponent(i).getBounds();
+				for(int i = 0; i < questionPanel.getComponentCount(); i++) {
+					Rectangle bounds = questionPanel.getComponent(i).getBounds();
 					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
 					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
 				}
-				Insets insets = panel1.getInsets();
+				Insets insets = questionPanel.getInsets();
 				preferredSize.width += insets.right;
 				preferredSize.height += insets.bottom;
-				panel1.setMinimumSize(preferredSize);
-				panel1.setPreferredSize(preferredSize);
+				questionPanel.setMinimumSize(preferredSize);
+				questionPanel.setPreferredSize(preferredSize);
 			}
 		}
 
@@ -489,7 +575,7 @@ public class mainUI extends JFrame {
 											.addGap(6, 6, 6)
 											.addComponent(redoButton, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
 										.addComponent(sketchPanel, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
-										.addComponent(panel1, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE))
+										.addComponent(questionPanel, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(feedbackPanel, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
 								.addComponent(separator1, GroupLayout.PREFERRED_SIZE, 1024, GroupLayout.PREFERRED_SIZE)
@@ -506,9 +592,9 @@ public class mainUI extends JFrame {
 					.addGap(1, 1, 1)
 					.addGroup(contentPaneLayout.createParallelGroup()
 						.addGroup(contentPaneLayout.createSequentialGroup()
-							.addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addComponent(questionPanel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(sketchPanel, GroupLayout.PREFERRED_SIZE, 334, GroupLayout.PREFERRED_SIZE)
+							.addComponent(sketchPanel, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(contentPaneLayout.createParallelGroup()
 								.addComponent(toggleButton1)
@@ -585,6 +671,6 @@ public class mainUI extends JFrame {
 	private JButton undoButton;
 	private JButton redoButton;
 	private JPanel sketchPanel;
-	private JPanel panel1;
+	private JPanel questionPanel;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

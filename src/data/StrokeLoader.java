@@ -18,9 +18,9 @@ import core.sketch.Stroke;
 
 public class StrokeLoader {
 	// attribute
-	static String filename = "C:\\Users\\Yin\\Desktop\\thesis\\data1\\4028\\46666.xml";
-	static List<Stroke> strokes = new ArrayList<Stroke>();
-	static Document doc = null;
+	private static String filename = "C:\\Users\\Yin\\Desktop\\thesis\\data1\\4028\\46666.xml";
+	private List<Stroke> strokes = new ArrayList<Stroke>();
+	private Document doc = null;
 	
 	public StrokeLoader() {
 		;
@@ -30,7 +30,8 @@ public class StrokeLoader {
 		;
 	}
 	
-	private static void getDocument() {
+	public void setDocument(String path) {
+		filename = path;
 		try {
 			File file = new File(filename);
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
@@ -42,13 +43,25 @@ public class StrokeLoader {
 		}
 	}
 	
-	public static void main(String[] args) {
-		getDocument();
-		setStrokes();
-		System.out.println(strokes.toString());
+	public void setDocument(File file) {
+		if (file == null) return;
+		try {
+			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dFactory.newDocumentBuilder();
+			doc = dBuilder.parse(file);
+			doc.getDocumentElement().normalize();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	
-	public static void setStrokes() {
+//	public static void main(String[] args) {
+//		getDocument();
+//		setStrokes();
+//		System.out.println(strokes.toString());
+//	}
+	
+	public void setStrokes() {
 		List<Point> points = setPoints();
 		NodeList stroke_nodes = doc.getElementsByTagName("stroke");
 		for (int i = 0; i < stroke_nodes.getLength(); i++) {
@@ -68,14 +81,14 @@ public class StrokeLoader {
 		}
 	}
 	
-	private static Point findPoint(List<Point> points, String id) {
+	private Point findPoint(List<Point> points, String id) {
 		for (Point point : points) {
 			if (point.getId().equals(id)) return point;
 		}
 		return null;
 	}
 
-	public static List<Point> setPoints() {
+	public List<Point> setPoints() {
 		List<Point> points = new ArrayList<Point>();
 		
 		NodeList point_nodes = doc.getElementsByTagName("point");
@@ -86,12 +99,16 @@ public class StrokeLoader {
 				Element point_element = (Element) point_node;
 				double x = Double.parseDouble(point_element.getAttribute("x"));
 				double y = Double.parseDouble(point_element.getAttribute("y"));
-				double time = Double.parseDouble(point_element.getAttribute("time"));
+				Double time = Double.parseDouble(point_element.getAttribute("time"));
 				String id = point_element.getAttribute("id");
 				points.add(new Point(x, y, time, id));
 			}
 		}
 		return points;
+	}
+	
+	public List<Stroke> getStrokes() {
+		return strokes;
 	}
 	
 }

@@ -58,4 +58,11 @@ public class BoundingBox {
 	public void update(Point p) {
 		update(p.getX(), p.getY());
 	}
+	
+	public void clear() {
+		left = Double.MAX_VALUE;
+		right = Double.MIN_VALUE;
+		up = Double.MAX_VALUE;
+		down = Double.MIN_VALUE;
+	}
 }

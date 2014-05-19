@@ -14,15 +14,12 @@ public class Stroke {
 	}
 	
 	public Stroke(List<Point> points) {
-		this.points.addAll(points);	
-		for (Point point : points) {
-			update(point);
-		}
+		setPoints(points);
 	}
 	
 	public void addPoint(Point point) {
-		points.add(point);
 		update(point);
+		points.add(point);
 	}
 	
 	public void update(Point point) {
@@ -48,6 +45,25 @@ public class Stroke {
 		return bbd;
 	}
 	
+	
+	public BoundingBox recalcBoundingBox() {
+		bbd.clear();
+		for (Point point : points) {
+			bbd.update(point);
+		}
+		return bbd;
+	}
+	
+	public double recalcLength() {
+		length = 0.0;
+		Point lastPoint = points.get(0);
+		for (Point point : points) {
+			length += lastPoint.distanceTo(point);
+			lastPoint = point;
+		}
+		return length;
+	}
+	
 	public Double getStrokeLength() {
 		return length;
 	}
@@ -59,5 +75,19 @@ public class Stroke {
 	
 	public List<Interpretation> getInterpretation() {
 		return interpretation;
+	}
+	
+	public void clear() {
+		points.clear();
+		interpretation.clear();
+		bbd.clear();
+		length = 0.0;
+	}
+	
+	public void setPoints(List<Point> points) {
+		this.points.clear();
+		this.points.addAll(points);	
+		recalcBoundingBox();
+		recalcLength();
 	}
 }
