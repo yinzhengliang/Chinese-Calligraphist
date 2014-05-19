@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import core.sketch.Interpretation;
 import core.sketch.Point;
@@ -24,7 +26,29 @@ public class Hausdroff implements IRecognizer {
 	@Override
 	public List<Interpretation> recognize(Stroke stroke) {
 		// TODO Auto-generated method stub
-		return null;
+		Set<Interpretation> interpretations = new TreeSet<Interpretation>();
+		double normalizer = Double.MAX_VALUE;
+		for (Map.Entry<String, List<Stroke>> entry : templates.entrySet()) {
+			String name = entry.getKey();
+			double distance = 0.0;
+			for (Stroke template : entry.getValue()) {
+				double cur_distance = h_distance(template, stroke);
+				distance += cur_distance;
+				normalizer = (normalizer < cur_distance? normalizer : cur_distance);
+			}
+			interpretations.add(new Interpretation(name, 1.0 + distance / entry.getValue().size()));
+		}
+		List<Interpretation> results = new ArrayList<Interpretation>();
+		
+		normalizer += 1;
+		for (Interpretation interpretation : interpretations) {
+			double confidence = normalizer / interpretation.getConfidence();
+			if (confidence > 0.5) {
+				interpretation.setConfidence(confidence);
+				results.add(interpretation);
+			}
+		}
+		return results;
 	}
 
 	@Override
@@ -50,8 +74,8 @@ public class Hausdroff implements IRecognizer {
 	            templates.put(name, new ArrayList<Stroke>());
 	            
 	            for (File subfile : file.listFiles()) {
-	            	 StrokeLoader loader = new StrokeLoader();
-	 	    		loader.setDocument(file);
+	            	StrokeLoader loader = new StrokeLoader();
+	 	    		loader.setDocument(subfile);
 	 	    		loader.setStrokes();
 	 	    		List<Stroke> strokes = loader.getStrokes();
 	 	    		if (strokes.size() > 1) {
@@ -64,10 +88,33 @@ public class Hausdroff implements IRecognizer {
 	        	
 	        }
 	    }
-		
-		
 	}
 	
-//	public 
+	private double distance_point_to_stroke(Point point, Stroke stroke) {
+		double distance = 0.0;
+		distance = point.distanceTo(stroke.getPoints().get(0));
+		for (Point targetPoint : stroke.getPoints()) {
+			double cur_distance = point.distanceTo(targetPoint);
+			distance = (distance < cur_distance? distance : cur_distance);
+		}
+		return distance;
+	}
+	
+	private double h_distance(Stroke strokeA, Stroke strokeB) {
+		double distance = 0.0;
+		
+		for (Point point : strokeA.getPoints()) {
+			double cur_distance = distance_point_to_stroke(point, strokeB);
+			distance = (distance > cur_distance? distance : cur_distance);
+		}
+
+		for (Point point : strokeB.getPoints()) {
+			double cur_distance = distance_point_to_stroke(point, strokeA);
+			distance = (distance > cur_distance? distance : cur_distance);
+		}
+
+		return distance;
+	}
+
 }
   

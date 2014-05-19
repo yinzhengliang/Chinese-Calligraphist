@@ -11,6 +11,18 @@ public class Interpretation implements Comparable<Interpretation> {
 		this.name = name;
 		this.confidence = confidence;
 	}
+	
+	public double getConfidence() {
+		return confidence;
+	}
+	
+	public void setConfidence(Double confidence) {
+		this.confidence = confidence;
+	}
+	
+	public String getName() {
+		return name;
+	}
 
 	@Override
 	public int compareTo(Interpretation other) {
