@@ -12,13 +12,11 @@ import core.sketch.Interpretation;
 import core.sketch.Point;
 import core.sketch.Stroke;
 import data.StrokeLoader;
-import data.StrokeSaver;
 import recognizer.IRecognizer;
-import recognizer.Preprocessor;
 
 public class Hausdroff implements IRecognizer {
-	Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
-	Stroke stroke_to_recognize = new Stroke();
+	private Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
+	private Stroke stroke_to_recognize = new Stroke();
 	private String templates_folder = "C:/Users/Yin/Desktop/templates";
 	
 	public Hausdroff() {
@@ -43,11 +41,12 @@ public class Hausdroff implements IRecognizer {
 				normalizer = (normalizer < cur_distance? normalizer : cur_distance);
 			}
 			interpretations.add(new Interpretation(name,  (distance / entry.getValue().size() + min_distance) / 2.0));
+//			interpretations.add(new Interpretation(name,  min_distance));
 		}
 		List<Interpretation> results = new ArrayList<Interpretation>();
 		
 //		normalizer += 1;
-		System.out.println(normalizer);
+//		System.out.println(normalizer);
 		for (Interpretation interpretation : interpretations) {
 			double confidence = normalizer / interpretation.getConfidence();
 //			if (confidence > 0.5) {

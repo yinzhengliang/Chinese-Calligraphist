@@ -72,4 +72,31 @@ public class Preprocessor {
 		return stroke;
 	}
 
+	public Point centroid(List<Point> points) {
+		double center_x = 0.0;
+		double center_y = 0.0;
+		for (Point point : points) {
+			center_x += point.getX();
+			center_y += point.getY();
+		}
+		return new Point(center_x, center_y);
+	}
+	
+	public double indicative_angle(List<Point> points) {
+		Point center = centroid(points);
+		double angle = Math.atan2(center.getY() - points.get(0).getY(), center.getX() - points.get(0).getX());
+		return angle;
+	}
+	
+	public List<Point> rotate_by(List<Point> points, double angle) {
+		Point center = centroid(points);
+		List<Point> newPoints = new ArrayList<Point>();
+		for (Point point : points) {
+			double x = (point.getX() - center.getX()) * Math.cos(angle) - (point.getY() - center.getY()) * Math.sin(angle) + center.getX();
+			double y = (point.getX() - center.getX()) * Math.sin(angle) + (point.getY() - center.getY()) * Math.cos(angle) + center.getY();
+			newPoints.add(new Point(x, y, point.getTime(), point.getId()));
+		}
+		return newPoints;
+	}
+	
 }

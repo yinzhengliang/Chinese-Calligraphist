@@ -41,8 +41,8 @@ public class mainUI extends JFrame {
 	private void usingRubineMouseClicked(MouseEvent e) {
 		// TODO add your code here
 		feedbackText.append("Rubine Mouse: " + usingRubine.isSelected() + "\n");
-		feedbackText.selectAll();
-		feedbackText.setCaretPosition(feedbackText.getDocument().getLength());
+//		feedbackText.selectAll();
+//		feedbackText.setCaretPosition(feedbackText.getDocument().getLength());
 	}
 
 	private void sketchPanelMousePressed(MouseEvent e) {
@@ -70,14 +70,15 @@ public class mainUI extends JFrame {
 
 	private void sketchPanelMouseReleased(MouseEvent e) {
 		// TODO add your code here
-		System.out.println("======================result=====================");
+//		System.out.println("======================result=====================");
 		List<Interpretation> interpretations = recognizer.recognize(strokes.get(strokes.size() - 1));
-		for (Interpretation interpretation : interpretations) {
-			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
-		}
-		System.out.println();
-		System.out.println();
-		System.out.println();
+//		for (Interpretation interpretation : interpretations) {
+//			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
+//		}
+//		System.out.println();
+//		System.out.println();
+//		System.out.println();
+		feedbackText.append(interpretations.get(0).getName() + "\n");
 		 sketchPanel.repaint();
 	}
 
