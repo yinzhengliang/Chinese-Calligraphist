@@ -6,7 +6,7 @@ public class Interpretation implements Comparable<Interpretation> {
 	
 	public Interpretation() {
 	}
-	
+
 	public Interpretation(String name, Double confidence) {
 		this.name = name;
 		this.confidence = confidence;
@@ -29,6 +29,6 @@ public class Interpretation implements Comparable<Interpretation> {
 		if(this.confidence==other.confidence){
             return this.name.compareTo(other.name);
         }
-        return (int) (this.confidence-other.confidence);
+        return (int) ((other.confidence-this.confidence) * 100000);
 	}
 }

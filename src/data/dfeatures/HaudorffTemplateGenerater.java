@@ -9,7 +9,7 @@ import core.sketch.Stroke;
 import data.StrokeLoader;
 import data.StrokeSaver;
 
-public class RubineFeatures {
+public class HaudorffTemplateGenerater {
 //	static StrokeLoader loader = new StrokeLoader();
 	
 	public void test() {

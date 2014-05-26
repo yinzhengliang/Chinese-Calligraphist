@@ -17,7 +17,7 @@ import recognizer.IRecognizer;
 public class Hausdroff implements IRecognizer {
 	private Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
 	private Stroke stroke_to_recognize = new Stroke();
-	private String templates_folder = "C:/Users/Yin/Desktop/templates";
+	private String templates_folder = "C:/Users/Yin/Desktop/Hausdorff/templates";
 	
 	public Hausdroff() {
 		loadTemplates();
@@ -51,9 +51,13 @@ public class Hausdroff implements IRecognizer {
 			double confidence = normalizer / interpretation.getConfidence();
 //			if (confidence > 0.5) {
 				interpretation.setConfidence(confidence);
-				results.add(interpretation);
 //			}
 		}
+		results.addAll(interpretations);
+		interpretations.clear();
+		interpretations.addAll(results);
+		results.clear();
+		results.addAll(interpretations);
 		return results;
 	}
 

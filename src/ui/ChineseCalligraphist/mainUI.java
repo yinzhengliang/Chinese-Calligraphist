@@ -17,6 +17,7 @@ import java.util.Stack;
 
 import javax.swing.*;
 
+import recognizer.low.template.Dollar;
 import recognizer.low.template.Hausdroff;
 
 /**
@@ -30,7 +31,8 @@ public class mainUI extends JFrame {
 	//private List<Point> points = new ArrayList<Point>();
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Stack<Stroke> undoStrokes = new Stack<Stroke>();
-	private Hausdroff recognizer = new Hausdroff();
+//	private Hausdroff recognizer = new Hausdroff();
+	private Dollar recognizer = new Dollar();
 
 	private static final long serialVersionUID = 1L;
   
@@ -70,14 +72,14 @@ public class mainUI extends JFrame {
 
 	private void sketchPanelMouseReleased(MouseEvent e) {
 		// TODO add your code here
-//		System.out.println("======================result=====================");
+		System.out.println("======================result=====================");
 		List<Interpretation> interpretations = recognizer.recognize(strokes.get(strokes.size() - 1));
-//		for (Interpretation interpretation : interpretations) {
-//			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
-//		}
-//		System.out.println();
-//		System.out.println();
-//		System.out.println();
+		for (Interpretation interpretation : interpretations) {
+			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		feedbackText.append(interpretations.get(0).getName() + "\n");
 		 sketchPanel.repaint();
 	}

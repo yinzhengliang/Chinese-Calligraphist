@@ -1,4 +1,4 @@
-package recognizer.low.template;
+package recognizer.low.gesture;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
