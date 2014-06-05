@@ -16,16 +16,39 @@ import core.sketch.Stroke;
 import recognizer.IRecognizer;
 
 public class Rubine implements IRecognizer {
-	boolean neuralNetwork = false;
+	private String modelFilePath = "C:/Users/Yin/Desktop/Rubine_Final_Weight_lol.txt";
+	private boolean neuralNetwork = false;
+	private Map<String, Map<String, Double>> weights = null;
 
+	public Rubine() {
+		weights = calcWeight(modelFilePath);
+	}
+	
 	public void useNN(boolean nn) {
 		neuralNetwork = nn;
 	}
 	
 	@Override
 	public List<Interpretation> recognize(Stroke stroke) {
-		if (neuralNetwork) return NNRubine(stroke);
-		return originalRubine(stroke);
+//		if (neuralNetwork) return NNRubine(stroke);
+//		return originalRubine(stroke);
+		
+		
+		Set<Interpretation> recognitionSet = new TreeSet<Interpretation>();
+		Map<String, Double> features = calculateFeatures(stroke);
+		
+		for (Map.Entry<String, Map<String, Double>> entry : weights.entrySet()) {
+			String Class = entry.getKey();
+			Double Confidence = 0.0;
+			for (Map.Entry<String, Double> weight : entry.getValue().entrySet()) {
+				String featureName = weight.getKey();
+				if (featureName.equals("f0")) Confidence += weight.getValue();
+				else Confidence += features.get(featureName) * weight.getValue();
+			}
+			recognitionSet.add(new Interpretation(Class, Confidence));
+		}
+		List<Interpretation> recognitionResult = new ArrayList<Interpretation>(recognitionSet);
+		return recognitionResult;
 	}
 	
 	public List<Interpretation> NNRubine(Stroke stroke) {
@@ -84,6 +107,29 @@ public class Rubine implements IRecognizer {
 		return recognitionResult;
 	}
 	
+	public Map<String, Map<String, Double>> calcWeight(String modelFile) {
+		Map<String, Map<String, Double>> weightMatrix = new HashMap<String, Map<String, Double>>();
+		try (BufferedReader file = new BufferedReader(new FileReader(modelFile))) {
+			String line;
+			while ((line = file.readLine()) != null) {
+				String[] pair = line.split("\t");
+				String Class = pair[0];
+				
+				Map<String, Double> map = new HashMap<String, Double>();
+				for (int i = 1; i < pair.length; i++) {
+					map.put(String.format("f%d", i-1), Double.parseDouble(pair[i]));
+				}
+				weightMatrix.put(Class, map);
+			}
+		} catch (IOException e) {
+			System.out.println("Rubine Weight file not found");
+			e.printStackTrace();
+		}
+		return weightMatrix;
+	}
+	
+	
+//	!!!!!!!!!!!!!!!!!!
 	public Map<String, Map<String, Double>> getWeight(String modelFile) {
 		Map<String, Map<String, Double>> weightMatrix = new HashMap<String, Map<String, Double>>();
 		try (BufferedReader file = new BufferedReader(new FileReader(modelFile))) {
@@ -112,7 +158,7 @@ public class Rubine implements IRecognizer {
 
 		List<Double> xList = new ArrayList<Double>();
 		List<Double> yList = new ArrayList<Double>();
-		List<Double> tList = new ArrayList<Double>();
+		List<Double> tList = new ArrayList<Double>(); 
 
 		List<Double> xDeltaList = new ArrayList<Double>();
 		List<Double> yDeltaList = new ArrayList<Double>();
@@ -163,7 +209,7 @@ public class Rubine implements IRecognizer {
 		Double yDistance = yList.get(2) - yList.get(0);
 		Double hDistance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
 		hDistance = (hDistance > 0.001 ? hDistance : 0.001);
-		feature.put("F1", 1.0 * xDistance / hDistance);
+		feature.put("f1", 1.0 * xDistance / hDistance);
 
 		// Calculate f2: Sine of angle alpha
 		feature.put("f2", 1.0 * yDistance / hDistance);
@@ -209,17 +255,17 @@ public class Rubine implements IRecognizer {
 		// Calculate f11: sharpness, total squared rotation
 		feature.put("f11", sharpness);
 		
-		// Calculate f12: maximum speed
-		Double maxSpeed = 0.0;
-		for (int i = 0; i < xDeltaSquareList.size(); i++) {
-			Double demoninator = tDeltaSquareList.get(i);
-			if (demoninator < 0.001) demoninator = 1.0;
-			Double tempSpeed = 1.0 * (xDeltaSquareList.get(i) + yDeltaSquareList.get(i)) / demoninator;
-			maxSpeed = (maxSpeed > tempSpeed)? maxSpeed : tempSpeed;
-		}
-		feature.put("f12", maxSpeed);
-		// Calculate f113: total time used
-		feature.put("f13", tList.get(tList.size() - 1) - tList.get(0));
+//		// Calculate f12: maximum speed
+//		Double maxSpeed = 0.0;
+//		for (int i = 0; i < xDeltaSquareList.size(); i++) {
+//			Double demoninator = tDeltaSquareList.get(i);
+//			if (demoninator < 0.001) demoninator = 1.0;
+//			Double tempSpeed = 1.0 * (xDeltaSquareList.get(i) + yDeltaSquareList.get(i)) / demoninator;
+//			maxSpeed = (maxSpeed > tempSpeed)? maxSpeed : tempSpeed;
+//		}
+//		feature.put("f12", maxSpeed);
+//		// Calculate f113: total time used
+//		feature.put("f13", tList.get(tList.size() - 1) - tList.get(0));
 
 		return feature;
 	}

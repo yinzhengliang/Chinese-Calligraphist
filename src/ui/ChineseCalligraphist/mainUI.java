@@ -17,8 +17,11 @@ import java.util.Stack;
 
 import javax.swing.*;
 
+import recognizer.low.gesture.Rubine;
+import recognizer.low.gesture.Long;
 import recognizer.low.template.Dollar;
 import recognizer.low.template.Hausdroff;
+import ui.feedback.FeedbackResult;
 
 /**
  * @author Zhengliang Yin
@@ -27,12 +30,17 @@ public class mainUI extends JFrame {
 	/**
 	 * 
 	 */
+	
+
+	private DefaultListModel<FeedbackResult> listModel = new DefaultListModel<FeedbackResult>();
  
 	//private List<Point> points = new ArrayList<Point>();
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Stack<Stroke> undoStrokes = new Stack<Stroke>();
 //	private Hausdroff recognizer = new Hausdroff();
-	private Dollar recognizer = new Dollar();
+//	private Dollar recognizer = new Dollar();
+//	private Rubine recognizer = new Rubine();
+	private Long recognizer = new Long();
 
 	private static final long serialVersionUID = 1L;
   
@@ -42,7 +50,10 @@ public class mainUI extends JFrame {
 
 	private void usingRubineMouseClicked(MouseEvent e) {
 		// TODO add your code here
-		feedbackText.append("Rubine Mouse: " + usingRubine.isSelected() + "\n");
+//		feedbackText.add("Rubine Mouse: " + usingRubine.isSelected());
+//		listModel.addElement("Rubine Mouse: " + usingRubine.isSelected());
+		System.out.println(feedbackText.getComponent(feedbackText.getComponentCount() - 1));
+//		feedbackText.append("Rubine Mouse: " + usingRubine.isSelected() + "\n");
 //		feedbackText.selectAll();
 //		feedbackText.setCaretPosition(feedbackText.getDocument().getLength());
 	}
@@ -80,8 +91,11 @@ public class mainUI extends JFrame {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		feedbackText.append(interpretations.get(0).getName() + "\n");
-		 sketchPanel.repaint();
+//		feedbackText.append(interpretations.get(0).getName() + "\n");
+//		feedbackText.add(new JTextArea(interpretations.get(0).getName() + "\n"));
+		listModel.addElement(new FeedbackResult());
+		
+		sketchPanel.repaint();
 	}
 
 	private void usingLongMouseClicked(MouseEvent e) {
@@ -149,19 +163,20 @@ public class mainUI extends JFrame {
 		separator8 = new JSeparator();
 		separator9 = new JSeparator();
 		feedbackArea = new JScrollPane();
-//		feedbackText = new JTextArea();
-		feedbackText = new JTextArea() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -3846208201545789570L;
-
-			 @Override
-			 public void paintComponents(Graphics g) {
-				super.paintComponents(g);
-				setBackground(new Color(255, 173, 82, 26));
-			 }
-		};
+//		feedbackText = new JList<String>(listModel);
+		feedbackText = new JList<FeedbackResult>(listModel);
+//		feedbackText = new JList<JTextArea>() {
+//			/**
+//			 * 
+//			 */
+//			private static final long serialVersionUID = -3846208201545789570L;
+//
+//			 @Override
+//			 public void paintComponents(Graphics g) {
+//				super.paintComponents(g);
+//				setBackground(new Color(255, 173, 82, 26));
+//			 }
+//		};
 		toggleButton1 = new JToggleButton();
 		prevButton = new JButton();
 		nextButton = new JButton();
@@ -435,7 +450,8 @@ public class mainUI extends JFrame {
 				feedbackArea.setBackground(new Color(240, 10, 240, 68));
 
 				//---- feedbackText ----
-				feedbackText.setEditable(false);
+				
+//				feedbackText.setEditable(false);
 //				feedbackText.setBackground(new Color(255, 173, 82, 26));
 				feedbackArea.setViewportView(feedbackText);
 			}
@@ -676,7 +692,9 @@ public class mainUI extends JFrame {
 	private JSeparator separator8;
 	private JSeparator separator9;
 	private JScrollPane feedbackArea;
-	private JTextArea feedbackText;
+//	private JTextArea feedbackText;
+//	private JList<String> feedbackText;
+	private JList<FeedbackResult> feedbackText;
 	private JToggleButton toggleButton1;
 	private JButton prevButton;
 	private JButton nextButton;

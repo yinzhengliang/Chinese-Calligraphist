@@ -16,17 +16,61 @@ import core.sketch.Stroke;
 import recognizer.IRecognizer;
 
 public class Long implements IRecognizer {
+	private String modelFilePath = "C:/Users/Yin/Desktop/Long_Final_Weight.txt";
 	boolean neuralNetwork = false;
+	private Map<String, Map<String, Double>> weights = null;
 
+	public Long() {
+		weights = calcWeight(modelFilePath);
+	}
+	
+	public Map<String, Map<String, Double>> calcWeight(String modelFile) {
+		Map<String, Map<String, Double>> weightMatrix = new HashMap<String, Map<String, Double>>();
+		try (BufferedReader file = new BufferedReader(new FileReader(modelFile))) {
+			String line;
+			while ((line = file.readLine()) != null) {
+				String[] pair = line.split("\t");
+				String Class = pair[0];
+				
+				Map<String, Double> map = new HashMap<String, Double>();
+				for (int i = 1; i < pair.length; i++) {
+					map.put(String.format("f%d", i-1), Double.parseDouble(pair[i]));
+				}
+				weightMatrix.put(Class, map);
+			}
+		} catch (IOException e) {
+			System.out.println("Rubine Weight file not found");
+			e.printStackTrace();
+		}
+		return weightMatrix;
+	}
+	
+	
 	public void useNN(boolean nn) {
 		neuralNetwork = nn;
 	}
 
 	@Override
 	public List<Interpretation> recognize(Stroke stroke) {
-		if (neuralNetwork)
-			return NNLong(stroke);
-		return originalLong(stroke);
+//		if (neuralNetwork)
+//			return NNLong(stroke);
+//		return originalLong(stroke);
+
+		Set<Interpretation> recognitionSet = new TreeSet<Interpretation>();
+		Map<String, Double> features = calculateFeatures(stroke);
+		
+		for (Map.Entry<String, Map<String, Double>> entry : weights.entrySet()) {
+			String Class = entry.getKey();
+			Double Confidence = 0.0;
+			for (Map.Entry<String, Double> weight : entry.getValue().entrySet()) {
+				String featureName = weight.getKey();
+				if (featureName.equals("f0")) Confidence += weight.getValue();
+				else Confidence += features.get(featureName) * weight.getValue();
+			}
+			recognitionSet.add(new Interpretation(Class, Confidence));
+		}
+		List<Interpretation> recognitionResult = new ArrayList<Interpretation>(recognitionSet);
+		return recognitionResult;
 	}
 
 	public List<Interpretation> NNLong(Stroke stroke) { 
@@ -164,7 +208,7 @@ public class Long implements IRecognizer {
 		Double yDistance = yList.get(2) - yList.get(0);
 		Double hDistance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
 		hDistance = (hDistance > 0.001 ? hDistance : 0.001);
-		feature.put("F1", 1.0 * xDistance / hDistance);
+		feature.put("f1", 1.0 * xDistance / hDistance);
 
 		// Calculate f2: Sine of angle alpha
 		feature.put("f2", 1.0 * yDistance / hDistance);
