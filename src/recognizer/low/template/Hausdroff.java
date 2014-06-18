@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import constants.Constant;
 import core.sketch.Interpretation;
 import core.sketch.Point;
 import core.sketch.Stroke;
@@ -17,7 +18,7 @@ import recognizer.IRecognizer;
 public class Hausdroff implements IRecognizer {
 	private Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
 	private Stroke stroke_to_recognize = new Stroke();
-	private String templates_folder = "C:/Users/Yin/Desktop/Hausdorff/templates";
+	private String templates_folder = Constant.TEMPLATE_DIR + "Hausdorff/" + "templates";
 	
 	public Hausdroff() {
 		loadTemplates();

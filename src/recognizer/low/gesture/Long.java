@@ -10,13 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import constants.Constant;
 import core.sketch.Interpretation;
 import core.sketch.Point;
 import core.sketch.Stroke;
 import recognizer.IRecognizer;
 
 public class Long implements IRecognizer {
-	private String modelFilePath = "C:/Users/Yin/Desktop/Long_Final_Weight.txt";
+	private String modelFilePath = Constant.MODEL_DIR + "Long/" + "Long_Final_Weight.txt";
 	boolean neuralNetwork = false;
 	private Map<String, Map<String, Double>> weights = null;
 

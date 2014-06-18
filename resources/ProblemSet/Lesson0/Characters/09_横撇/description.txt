@@ -1,0 +1,7 @@
+character:∫·∆≤
+problemText:This is the a compound stroke combining "Heng" and "Pie". The correct writing sheme is to write "Heng" first, following a "Pie" stroke to a compatible length with "Heng". Please practice writing.
+meaning:Compound stroke "∫·∆≤"
+pronounce:H®¶ng Pi®ß
+strokeNumber:1
+Strokes:"HengPie"
+Radicals:N/A

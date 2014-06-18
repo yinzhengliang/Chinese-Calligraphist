@@ -10,13 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import constants.Constant;
 import core.sketch.Interpretation;
 import core.sketch.Point;
 import core.sketch.Stroke;
 import recognizer.IRecognizer;
 
 public class Rubine implements IRecognizer {
-	private String modelFilePath = "C:/Users/Yin/Desktop/Rubine_Final_Weight_lol.txt";
+	private String modelFilePath = Constant.MODEL_DIR + "Rubine/" + "Rubine_Final_Weight_lol.txt";
 	private boolean neuralNetwork = false;
 	private Map<String, Map<String, Double>> weights = null;
 

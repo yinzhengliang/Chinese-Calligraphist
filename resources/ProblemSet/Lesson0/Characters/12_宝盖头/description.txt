@@ -1,0 +1,7 @@
+character:å²
+problemText:This is the a radical "å²", which means cover, or house. It has 3 strokes. It cannot be a character itself, instead it is always combined with other parts to form a character. Please practice writing.
+meaning:Radical "cover", "house"
+pronounce:N/A
+strokeNumber:3
+Strokes:"Dian"	"Shu"	"HengGou"
+Radicals:å²

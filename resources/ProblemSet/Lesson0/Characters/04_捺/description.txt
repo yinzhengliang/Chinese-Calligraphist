@@ -1,0 +1,7 @@
+character:Þà
+problemText:This is the a basic Stroke "Þà", pronounced as "N¨¤", which is a long curve with negative slope in shape. The correct direction should be written from upleft to downright. Please practice writing.
+meaning:Basic stroke "Na"
+pronounce:N¨¤
+strokeNumber:1
+Strokes:"Na"
+Radicals:N/A

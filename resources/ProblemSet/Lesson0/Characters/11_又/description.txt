@@ -1,0 +1,7 @@
+character:ÓÖ
+problemText:This is the a 2 stroke character "ÓÖ". It is simplified character which means again, Please practice writing.
+meaning:again, repetitive
+pronounce:Y¨°u
+strokeNumber:2
+Strokes:"HengPie"	"Na"
+Radicals:ÓÖ

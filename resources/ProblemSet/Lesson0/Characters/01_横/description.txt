@@ -1,0 +1,7 @@
+character:ºá
+problemText:This is the most basic Stroke "ºá", pronounced as "H¨¦ng", which is a horizontal line in shape. Slightly positive slope is allowed, and it should be written from left to right. Please practice writing it.
+meaning:Basic stroke "Heng"
+pronounce:H¨¦ng
+strokeNumber:1
+Strokes:"Heng"
+Radicals:N/A

@@ -21,7 +21,7 @@ import recognizer.low.gesture.Rubine;
 import recognizer.low.gesture.Long;
 import recognizer.low.template.Dollar;
 import recognizer.low.template.Hausdroff;
-import ui.feedback.FeedbackResult;
+import ui.problemframe.feedback.FeedbackResult;
 
 /**
  * @author Zhengliang Yin

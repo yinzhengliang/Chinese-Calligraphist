@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import constants.Constant;
 import recognizer.low.gesture.Rubine;
 import core.sketch.Stroke;
 import data.StrokeLoader;
 
 public class RubineFeature {
-	private static String output_folder = "C:/Users/Yin/Desktop/Rubine.txt";
+	private static String output_folder = Constant.MODEL_DIR + "Rubine/" + "Rubine.txt";
 	
-	private static String training_folder = "C:/Users/Yin/Desktop/Rubine";
+	private static String training_folder = Constant.MODEL_DIR + "Rubine/" + "Rubine";
 	private static Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
 	
 	

@@ -18,7 +18,7 @@ import core.sketch.Stroke;
 
 public class StrokeLoader {
 	// attribute
-	private static String filename = "C:\\Users\\Yin\\Desktop\\thesis\\data1\\4028\\46666.xml";
+	private static String filename = "";
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Document doc = null;
 	
