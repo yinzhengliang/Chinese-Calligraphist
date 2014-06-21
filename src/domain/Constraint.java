@@ -8,8 +8,8 @@ import core.sketch.Stroke;
 
 public class Constraint {
 	DomainShape para1 = null;
-	DomainShape para2 = null; 
-	String Feedback = "";
+	DomainShape para2 = null;
+	String feedback = "";
 	String check = "";
 	String para1Spec = "";
 	String para2Spec = "";
@@ -18,28 +18,38 @@ public class Constraint {
 	public Constraint() {
 		// TODO
 	}
-	
+
 	public Constraint(Map<String, String> constraint) {
 		String check = constraint.get("check");
-		if (check != null) this.check = check;
-		
+		if (check != null)
+			this.check = check;
+
 		String para1Spec = constraint.get("para1Spec");
-		if (para1Spec != null) this.para1Spec = para1Spec;
-		
+		if (para1Spec != null)
+			this.para1Spec = para1Spec;
+
 		String para2Spec = constraint.get("para2Spec");
-		if (para2Spec != null) this.para2Spec = para2Spec;
-		
-		
+		if (para2Spec != null)
+			this.para2Spec = para2Spec;
+
+		String around = constraint.get("around");
+		if (around != null)
+			this.around = Integer.parseInt(around);
+
+		String feedback = constraint.get("feedbackString");
+		if (feedback != null)
+			this.feedback = feedback;
+
 	}
-	
+
 	public void setPara1(DomainShape component) {
 		para1 = component;
 	}
-	
+
 	public void setPara2(DomainShape component) {
 		para2 = component;
 	}
-	
+
 	public boolean check() {
 		boolean retValue = false;
 		switch (check) {
