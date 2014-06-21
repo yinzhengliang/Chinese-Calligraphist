@@ -1,21 +1,35 @@
 package domain;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import core.sketch.BoundingBox;
 import core.sketch.Stroke;
 
 public class DomainShape {
-	private enum Type {Character, Radical, Stroke, Unset};
-	
+	private List<Constraint> constraints = new ArrayList<Constraint>();
+	private List<DomainShape> components = new ArrayList<DomainShape>();
+	private List<Stroke> strokes;
+
 	private String name = "";
-	private Type type = Type.Unset;
-	private List<Stroke> storkes;
-	
+	private ShapeType.Type type = ShapeType.Type.Unset;
+
 	private BoundingBox bbd = new BoundingBox();
-	
-	private List<DomainShape> components;
-	
-	private List<Constraint> constraints;
+
+	public DomainShape() {
+
+	}
+
+	public DomainShape(String xmlSource) {
+
+	}
+
+	public BoundingBox getBoundingBox() {
+		return bbd;
+	}
+
+	public List<Stroke> getStrokes() {
+		return strokes;
+	}
 }

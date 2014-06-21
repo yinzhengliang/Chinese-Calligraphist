@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import constants.Constant;
 import core.sketch.Interpretation;
 import core.sketch.Point;
 import core.sketch.Stroke;
@@ -15,7 +16,7 @@ import data.StrokeLoader;
 import recognizer.IRecognizer;
 
 public class Dollar implements IRecognizer {
-	private String templates_folder = "C:/Users/Yin/Desktop/One_Dollar/test/to_generate";
+	private String templates_folder = Constant.TEMPLATE_DIR + "OneDollar/" + "template";
 	private Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
 	
 	private Stroke stroke_to_recognize = new Stroke();

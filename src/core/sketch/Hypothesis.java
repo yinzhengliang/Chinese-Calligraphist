@@ -5,6 +5,6 @@ package core.sketch;
  * @author Yin
  */
 public class Hypothesis {
-
+	
 	
 }
