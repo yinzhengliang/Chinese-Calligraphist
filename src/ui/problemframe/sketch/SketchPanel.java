@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.UUID;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ import ui.problemframe.feedback.FeedbackPanel;
 import ui.problemframe.problem.ProblemImagePanel;
 import core.sketch.Point;
 import core.sketch.Stroke;
+import data.StrokeSaver;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
@@ -35,7 +37,7 @@ public class SketchPanel extends JPanel {
 	private static List<Stroke> strokes = new ArrayList<Stroke>();
 	private static Stack<Stroke> undoStrokes = new Stack<Stroke>();
 	private static List<Stroke> hightlighted = new ArrayList<Stroke>();
-
+	static Integer iii = 0;
 	static JLabel canvas = new JLabel() {
 		/**
 		 * 
@@ -80,7 +82,27 @@ public class SketchPanel extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				FeedbackPanel.recognize(strokes);
+				 FeedbackPanel.recognize(strokes);
+				// TODO
+
+				/***********************
+
+				
+				// set id and time
+//				for (Stroke stroke : strokes) {
+				Stroke stroke = strokes.get(strokes.size() - 1);
+					for (Point point : stroke.getPoints()) {
+						point.generateRandomId();
+						point.generateTime(iii++);
+					}
+					StrokeSaver saver = new StrokeSaver();
+					List<Stroke> ssss = new ArrayList<Stroke>();
+					ssss.add(stroke);
+					saver.save(ssss, Constant.RESOURCE_PATH + "TestData/" + iii + ".xml");
+//				}
+
+				***********************/
+
 				canvas.repaint();
 			}
 		});
@@ -144,7 +166,6 @@ public class SketchPanel extends JPanel {
 	}
 
 	public static void highlightStrokes(List<Stroke> h_strokes) {
-		// TODO Auto-generated method stub
 		hightlighted.clear();
 		hightlighted.addAll(h_strokes);
 		canvas.repaint();

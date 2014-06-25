@@ -1,5 +1,7 @@
 package core.sketch;
 
+import java.util.UUID;
+
 public class Point {
 	double x = 0.0;
 	double y = 0.0;
@@ -59,5 +61,13 @@ public class Point {
 	public void scaleFromOrigin(double x_multi, double y_multi) {
 		x *= x_multi;
 		y *= y_multi;
+	}
+	
+	public void generateRandomId() {
+		id = UUID.randomUUID().toString();
+	}
+	
+	public void generateTime(int i) {
+		time = i;
 	}
 }

@@ -21,23 +21,23 @@ public class Constraint {
 
 	public Constraint(Map<String, String> constraint) {
 		String check = constraint.get("check");
-		if (check != null)
+		if (!check.equals(""))
 			this.check = check;
 
 		String para1Spec = constraint.get("para1Spec");
-		if (para1Spec != null)
+		if (!para1Spec.equals(""))
 			this.para1Spec = para1Spec;
 
 		String para2Spec = constraint.get("para2Spec");
-		if (para2Spec != null)
+		if (!para2Spec.equals(""))
 			this.para2Spec = para2Spec;
 
 		String around = constraint.get("around");
-		if (around != null)
+		if (!around.equals(""))
 			this.around = Integer.parseInt(around);
 
-		String feedback = constraint.get("feedbackString");
-		if (feedback != null)
+		String feedback = constraint.get("feedback");
+		if (!feedback.equals(""))
 			this.feedback = feedback;
 
 	}
@@ -77,9 +77,36 @@ public class Constraint {
 			retValue = SameY();
 			break;
 		}
+		case "Before": {
+			retValue = Before();
+			break;
+		}
+		case "After": {
+			retValue = After();
+			break;
+		}
 		// other cases
 		}
 		return retValue;
+	}
+
+	private boolean After() {
+		// this need extra info about stroke list to find the order of strokes
+		List<Stroke> para1Strokes = para1.getStrokes();
+		List<Stroke> para2Strokes = para2.getStrokes();
+		
+		Stroke stroke1 = para1Strokes.get(para1Strokes.size() - 1);
+		Stroke stroke2 = para2Strokes.get(0);
+		return (stroke1.serialNumber > stroke2.serialNumber);
+	}
+
+	private boolean Before() {
+		List<Stroke> para1Strokes = para1.getStrokes();
+		List<Stroke> para2Strokes = para2.getStrokes();
+		
+		Stroke stroke1 = para1Strokes.get(para1Strokes.size() - 1);
+		Stroke stroke2 = para2Strokes.get(0);
+		return (stroke1.serialNumber < stroke2.serialNumber);
 	}
 
 	private boolean Above() {

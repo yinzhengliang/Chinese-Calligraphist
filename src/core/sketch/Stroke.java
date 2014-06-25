@@ -8,6 +8,9 @@ public class Stroke {
 	List<Interpretation> interpretation = new ArrayList<Interpretation>();
 	BoundingBox bbd = new BoundingBox();
 	Double length = 0.0;
+	
+	private static int count = 0;
+	public int serialNumber = count++;
 	//Interpretation best = new Interpretation();
 	
 	public Stroke() {

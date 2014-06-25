@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import constants.Constant;
 import core.sketch.BoundingBox;
 import core.sketch.Stroke;
 
@@ -24,6 +25,9 @@ public class DomainShape {
 	private List<Constraint> constraints = new ArrayList<Constraint>();
 	private List<DomainShape> components = new ArrayList<DomainShape>();
 	private List<Stroke> strokes;
+	private Map<String, String> misClassifyWarning = new HashMap<String, String>();
+
+	private DomainDefinition m_domain;
 
 	private String name = "";
 	private ShapeType.Type type = ShapeType.Type.Unset;
@@ -49,8 +53,6 @@ public class DomainShape {
 	public DomainShape(String xmlSource) {
 		setDocument(xmlSource);
 
-		// TODO: root, set the name and type
-		// <Hypothesis name="SanDianShui" type="Radical">
 		Element hypothesis = doc.getDocumentElement();
 		name = hypothesis.getAttribute("name");
 		switch (hypothesis.getAttribute("type")) {
@@ -83,8 +85,15 @@ public class DomainShape {
 	}
 
 	private void setMisclassificationWarning() {
-		// TODO Auto-generated method stub
+		NodeList misClassify_nodes = doc.getElementsByTagName("misClassify");
 
+		for (int i = 0; i < misClassify_nodes.getLength(); i++) {
+			Node feedback_node = misClassify_nodes.item(i);
+			if (feedback_node.getNodeType() == Node.ELEMENT_NODE) {
+				Element misClassify_element = (Element) feedback_node;
+				misClassifyWarning.put(misClassify_element.getAttribute("name"), misClassify_element.getAttribute("feedbackString"));
+			}
+		}
 	}
 
 	private void setFeedbacks() {
@@ -144,13 +153,34 @@ public class DomainShape {
 				String type = component_element.getAttribute("type");
 				String alias = component_element.getAttribute("alias");
 
-				// TODO: generate a Domain Shape, and add it to the list, also, according to the name and type, find a
+				if (!type.equals("Observation")) {
+					String xmlFolder = "";
+					switch (type) {
+					case "Raical":
+					case "Character": {
+						xmlFolder = Constant.RADICAL_CHARACTER_DEFINE_DIR;
+						break;
+					}
+					case "Stroke": {
+						xmlFolder = Constant.STROKE_SHAPE_DEFINE_DIR;
+						break;
+					}
+					}
+
+					String xmlSource = xmlFolder + name + "/" + name + ".xml";
+
+					System.out.println(xmlSource);
+					System.out.println(name);
+					System.out.println(type);
+					components.add(new DomainShape(xmlSource));
+				}
+
+				// generate a Domain Shape, and add it to the list, also, according to the name and type, find a
 				// definition path, and generate then.
 				// leave the strokes blank, when see some observations meet all the constraints, add them to it. The
 				// strokes can be changable.
 			}
 		}
-
 	}
 
 	public BoundingBox getBoundingBox() {

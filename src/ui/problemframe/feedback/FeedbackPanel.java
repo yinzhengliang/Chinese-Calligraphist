@@ -15,6 +15,7 @@ import javax.swing.ListSelectionModel;
 
 import core.sketch.Interpretation;
 import core.sketch.Stroke;
+import recognizer.low.NN;
 import recognizer.low.gesture.Long;
 import ui.problemframe.problem.ProblemDefPanel;
 import ui.problemframe.problem.ProblemImagePanel;
@@ -31,7 +32,7 @@ public class FeedbackPanel extends JPanel {
 	private static DefaultListModel<FeedbackResult> listModel = new DefaultListModel<FeedbackResult>();
 	private final JList<FeedbackResult> feedbackText = new JList<FeedbackResult>(listModel);
 
-	private static Long recognizer = new Long();
+	private static NN recognizer = new NN();
 
 	/**
 	 * Create the panel.
@@ -39,7 +40,6 @@ public class FeedbackPanel extends JPanel {
 
 	public FeedbackPanel() {
 		initialize();
-
 	}
 
 	public void initialize() {

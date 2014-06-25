@@ -24,7 +24,7 @@ public class Long implements IRecognizer {
 	public Long() {
 		weights = calcWeight(modelFilePath);
 	}
-	
+
 	public Map<String, Map<String, Double>> calcWeight(String modelFile) {
 		Map<String, Map<String, Double>> weightMatrix = new HashMap<String, Map<String, Double>>();
 		try (BufferedReader file = new BufferedReader(new FileReader(modelFile))) {
@@ -32,10 +32,10 @@ public class Long implements IRecognizer {
 			while ((line = file.readLine()) != null) {
 				String[] pair = line.split("\t");
 				String Class = pair[0];
-				
+
 				Map<String, Double> map = new HashMap<String, Double>();
 				for (int i = 1; i < pair.length; i++) {
-					map.put(String.format("f%d", i-1), Double.parseDouble(pair[i]));
+					map.put(String.format("f%d", i - 1), Double.parseDouble(pair[i]));
 				}
 				weightMatrix.put(Class, map);
 			}
@@ -45,28 +45,29 @@ public class Long implements IRecognizer {
 		}
 		return weightMatrix;
 	}
-	
-	
+
 	public void useNN(boolean nn) {
 		neuralNetwork = nn;
 	}
 
 	@Override
 	public List<Interpretation> recognize(Stroke stroke) {
-//		if (neuralNetwork)
-//			return NNLong(stroke);
-//		return originalLong(stroke);
+		// if (neuralNetwork)
+		// return NNLong(stroke);
+		// return originalLong(stroke);
 
 		Set<Interpretation> recognitionSet = new TreeSet<Interpretation>();
 		Map<String, Double> features = calculateFeatures(stroke);
-		
+
 		for (Map.Entry<String, Map<String, Double>> entry : weights.entrySet()) {
 			String Class = entry.getKey();
 			Double Confidence = 0.0;
 			for (Map.Entry<String, Double> weight : entry.getValue().entrySet()) {
 				String featureName = weight.getKey();
-				if (featureName.equals("f0")) Confidence += weight.getValue();
-				else Confidence += features.get(featureName) * weight.getValue();
+				if (featureName.equals("f0"))
+					Confidence += weight.getValue();
+				else
+					Confidence += features.get(featureName) * weight.getValue();
 			}
 			recognitionSet.add(new Interpretation(Class, Confidence));
 		}
@@ -74,7 +75,7 @@ public class Long implements IRecognizer {
 		return recognitionResult;
 	}
 
-	public List<Interpretation> NNLong(Stroke stroke) { 
+	public List<Interpretation> NNLong(Stroke stroke) {
 		Set<Interpretation> recognitionSet = new TreeSet<Interpretation>();
 
 		// TODO change the "file" to some config constance
@@ -290,7 +291,7 @@ public class Long implements IRecognizer {
 
 		// Calculate f20: total angle / total absolute angle
 		feature.put("f20", feature.get("f9") / feature.get("f10"));
-		
+
 		// Calculate f21: Log(total length)
 		feature.put("f21", Math.log(feature.get("f8")));
 
@@ -303,6 +304,6 @@ public class Long implements IRecognizer {
 	@Override
 	public void preprocess(Stroke stroke) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

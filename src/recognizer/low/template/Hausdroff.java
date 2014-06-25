@@ -54,11 +54,19 @@ public class Hausdroff implements IRecognizer {
 				interpretation.setConfidence(confidence);
 //			}
 		}
-		results.addAll(interpretations);
-		interpretations.clear();
-		interpretations.addAll(results);
-		results.clear();
-		results.addAll(interpretations);
+		
+		TreeSet<Interpretation> resort = new TreeSet<Interpretation>();
+//		resort.addAll(interpretations);
+		for (Interpretation i : interpretations) {
+			resort.add(i);
+		}
+		results.addAll(resort);
+		
+//		results.addAll(interpretations);
+//		interpretations.clear();
+//		interpretations.addAll(results);
+//		results.clear();
+//		results.addAll(interpretations);
 		return results;
 	}
 

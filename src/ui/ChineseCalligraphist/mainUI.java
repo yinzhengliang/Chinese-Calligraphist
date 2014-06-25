@@ -37,10 +37,10 @@ public class mainUI extends JFrame {
 	//private List<Point> points = new ArrayList<Point>();
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Stack<Stroke> undoStrokes = new Stack<Stroke>();
-//	private Hausdroff recognizer = new Hausdroff();
+	private Hausdroff recognizer = new Hausdroff();
 //	private Dollar recognizer = new Dollar();
 //	private Rubine recognizer = new Rubine();
-	private Long recognizer = new Long();
+//	private Long recognizer = new Long();
 
 	private static final long serialVersionUID = 1L;
   
