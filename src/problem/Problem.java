@@ -52,6 +52,7 @@ public class Problem {
 		return strokeImages;
 	}
 
+	@SuppressWarnings("resource")
 	public Problem(File root) {
 		String rootPath = root.getAbsolutePath();
 		characterIconPath = rootPath + Constant.PROBLEM_CHARACTER_MID_ICON;

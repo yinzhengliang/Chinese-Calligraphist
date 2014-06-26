@@ -7,10 +7,7 @@ import java.util.List;
 
 import constants.Constant;
 import weka.classifiers.Evaluation;
-import weka.classifiers.functions.MultilayerPerceptron;
 import weka.classifiers.misc.SerializedClassifier;
-import weka.core.BinarySparseInstance;
-import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Utils;
 

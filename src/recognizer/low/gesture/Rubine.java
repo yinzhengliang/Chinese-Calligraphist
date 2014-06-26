@@ -18,6 +18,7 @@ import recognizer.IRecognizer;
 
 public class Rubine implements IRecognizer {
 	private String modelFilePath = Constant.MODEL_DIR + "Rubine/" + "Rubine_Final_Weight_lol.txt";
+	@SuppressWarnings("unused")
 	private boolean neuralNetwork = false;
 	private Map<String, Map<String, Double>> weights = null;
 

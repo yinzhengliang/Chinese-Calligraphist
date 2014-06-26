@@ -140,11 +140,13 @@ public class ProblemDefPanel extends JPanel {
 		}
 	}
 
-	public static void setStrokeFeedback(int position, String name) {
+	public static boolean setStrokeFeedback(int position, String name) {
+		boolean retValue = false;
 		name = "\"" + name + "\"";
-		ProblemImagePanel.strokeBackgroundFeedback(position, problems.get(problemIndex).getStrokeImages().get(position).getName().equals(name));
-		if (position == problems.get(problemIndex).getStrokeNumber()) {
-			ProblemImagePanel.check(position + 1);
+		retValue = ProblemImagePanel.strokeBackgroundFeedback(position, problems.get(problemIndex).getStrokeImages().get(position).getName().equals(name));
+		if (position == problems.get(problemIndex).getStrokeNumber() && retValue == true) {
+			retValue = ProblemImagePanel.check(position + 1);
 		}
+		return retValue;
 	}
 }

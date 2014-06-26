@@ -11,7 +11,6 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.UUID;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -22,7 +21,6 @@ import ui.problemframe.feedback.FeedbackPanel;
 import ui.problemframe.problem.ProblemImagePanel;
 import core.sketch.Point;
 import core.sketch.Stroke;
-import data.StrokeSaver;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;

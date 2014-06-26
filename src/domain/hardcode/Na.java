@@ -69,18 +69,19 @@ public class Na {
 		Element naMisWan = doc.createElement("misClassify");
 		misClassifyListElement.appendChild(naMisWan);
 		naMisWan.setAttribute("name", "Wan");
-		naMisWan.setAttribute("feedbackString", "Na and Wan looks similar. but Na is more flat, and Wan is vertical and thin");
+		naMisWan.setAttribute("feedbackString",
+				"Na and Wan looks similar. but Na is more flat, and Wan is vertical and thin");
 
 		Element naMisDian = doc.createElement("misClassify");
 		misClassifyListElement.appendChild(naMisDian);
 		naMisDian.setAttribute("name", "Dian");
 		naMisDian.setAttribute("feedbackString", "Na and Dian looks similar. Dian is short line, and Na is long curve");
-		
+
 		Element naMisHeng = doc.createElement("misClassify");
 		misClassifyListElement.appendChild(naMisHeng);
 		naMisHeng.setAttribute("name", "Heng");
-		naMisHeng.setAttribute("feedbackString", "Na and Heng are different. Na should be curve, and Heng is a horizontal straight line");
-		
+		naMisHeng.setAttribute("feedbackString",
+				"Na and Heng are different. Na should be curve, and Heng is a horizontal straight line");
 
 		// write the content into xml file
 		try {

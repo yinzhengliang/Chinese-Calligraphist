@@ -24,7 +24,7 @@ public class DomainShape {
 	private List<Constraint> feedbacks = new ArrayList<Constraint>();
 	private List<Constraint> constraints = new ArrayList<Constraint>();
 	private List<DomainShape> components = new ArrayList<DomainShape>();
-	private List<Stroke> strokes;
+	private List<Stroke> strokes = new ArrayList<Stroke>();
 	private Map<String, String> misClassifyWarning = new HashMap<String, String>();
 
 	private DomainDefinition m_domain;
@@ -54,22 +54,22 @@ public class DomainShape {
 		setDocument(xmlSource);
 
 		Element hypothesis = doc.getDocumentElement();
-		name = hypothesis.getAttribute("name");
+		setName(hypothesis.getAttribute("name"));
 		switch (hypothesis.getAttribute("type")) {
 		case "Observation": {
-			type = ShapeType.Type.Observation;
+			setType(ShapeType.Type.Observation);
 			break;
 		}
 		case "Stroke": {
-			type = ShapeType.Type.Stroke;
+			setType(ShapeType.Type.Stroke);
 			break;
 		}
 		case "Radical": {
-			type = ShapeType.Type.Radical;
+			setType(ShapeType.Type.Radical);
 			break;
 		}
 		case "Character": {
-			type = ShapeType.Type.Character;
+			setType(ShapeType.Type.Character);
 			break;
 		}
 		}
@@ -91,7 +91,8 @@ public class DomainShape {
 			Node feedback_node = misClassify_nodes.item(i);
 			if (feedback_node.getNodeType() == Node.ELEMENT_NODE) {
 				Element misClassify_element = (Element) feedback_node;
-				misClassifyWarning.put(misClassify_element.getAttribute("name"), misClassify_element.getAttribute("feedbackString"));
+				misClassifyWarning.put(misClassify_element.getAttribute("name"),
+						misClassify_element.getAttribute("feedbackString"));
 			}
 		}
 	}
@@ -169,9 +170,9 @@ public class DomainShape {
 
 					String xmlSource = xmlFolder + name + "/" + name + ".xml";
 
-					System.out.println(xmlSource);
-					System.out.println(name);
-					System.out.println(type);
+					// System.out.println(xmlSource);
+					// System.out.println(name);
+					// System.out.println(type);
 					components.add(new DomainShape(xmlSource));
 				}
 
@@ -189,5 +190,76 @@ public class DomainShape {
 
 	public List<Stroke> getStrokes() {
 		return strokes;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ShapeType.Type getType() {
+		return type;
+	}
+
+	public void setType(ShapeType.Type type) {
+		this.type = type;
+	}
+
+	public List<DomainShape> getComponents() {
+		return components;
+	}
+
+	public void copyComponent(List<DomainShape> components) {
+		this.components = components;
+	}
+
+	public void addStroke(Stroke stroke) {
+		strokes.add(stroke);
+	}
+
+	public void addStrokes(List<Stroke> strokes) {
+		this.strokes.addAll(strokes);
+	}
+
+	public DomainShape copy() {
+		DomainShape copied = new DomainShape();
+		copied.copyComponent(components);
+		copied.copyFeedbacks(feedbacks);
+		copied.copyConstraints(constraints);
+		copied.copyMisClassifyWarning(misClassifyWarning);
+
+		// private DomainDefinition m_domain;
+
+		copied.setName(name);
+		copied.setType(type);
+		return null;
+
+	}
+
+	public void copyMisClassifyWarning(Map<String, String> misClassifyWarning) {
+		this.misClassifyWarning = misClassifyWarning;
+	}
+
+	public void copyConstraints(List<Constraint> constraints) {
+		this.constraints = constraints;
+	}
+
+	public void copyFeedbacks(List<Constraint> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	public List<Constraint> getConstraints() {
+		return this.constraints;
+	}
+
+	public List<Constraint> getFeedbacks() {
+		return this.feedbacks;
+	}
+
+	public Map<String, String> getMisClassfication() {
+		return this.misClassifyWarning;
 	}
 }

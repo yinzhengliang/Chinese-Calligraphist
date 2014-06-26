@@ -65,7 +65,6 @@ public class CalculateLowLevelRecognitionAccuracy {
 		
 	}
 
-	@SuppressWarnings("resource")
 	private static void write(List<Interpretation> I, String S) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(S));

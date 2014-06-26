@@ -20,7 +20,7 @@ public class FeedbackResult {
 	
 	public FeedbackResult(Interpretation interpretation, List<Stroke> recognizedStrokes) {
 		setStrokes(recognizedStrokes);
-		text = interpretation.getName();
+		text = "Stroke: " + interpretation.getName() + " is recognized.";
 	}
 
 	public List<Stroke> getStrokes() {

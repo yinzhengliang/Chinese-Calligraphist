@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import problem.Problem;
-import ui.problemframe.feedback.FeedbackPanel;
 import ui.problemframe.problem.ProblemDefPanel;
 import ui.problemframe.sketch.SketchPanel;
 import constants.Constant;

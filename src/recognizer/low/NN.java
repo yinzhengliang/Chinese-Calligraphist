@@ -1,8 +1,6 @@
 package recognizer.low;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -113,17 +111,17 @@ public class NN implements IRecognizer {
 			}
 		}
 
-//		inst.setValue(index, 0.0);
-//		
-//		inst.setClassMissing();
+		// inst.setValue(index, 0.0);
+		//
+		// inst.setClassMissing();
 
 		List<Interpretation> result = new ArrayList<Interpretation>();
 
 		try {
-//			double pred = mlp.classifyInstance(inst);
+			// double pred = mlp.classifyInstance(inst);
 			double[] dist = mlp.distributionForInstance(inst);
 			Set<Interpretation> resultSet = new TreeSet<Interpretation>();
-//			System.out.println(pred);
+			// System.out.println(pred);
 			for (int i = 0; i < dist.length; i++)
 				resultSet.add(new Interpretation(train.classAttribute().value(i), dist[i]));
 			result.addAll(resultSet);
@@ -145,7 +143,7 @@ public class NN implements IRecognizer {
 				MAXVALUE = value;
 			retValue.put(i.getName(), i.getConfidence());
 		}
-		
+
 		Double normalizer = MAXVALUE - MINVALUE;
 		for (Map.Entry<String, Double> entry : retValue.entrySet()) {
 			Double value = (entry.getValue() - MINVALUE) / normalizer;

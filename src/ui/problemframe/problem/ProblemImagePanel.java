@@ -72,12 +72,15 @@ public class ProblemImagePanel extends JPanel {
 		}
 	}
 
-	public static void strokeBackgroundFeedback(int position, boolean flag) {
-		if (flag)
+	public static boolean strokeBackgroundFeedback(int position, boolean flag) {
+		if (flag) {
 			backColor.get(position).setBackground(Color.green);
-		else
-			backColor.get(position).setBackground(Color.red);
+		}
+		else {
+			backColor.get(position).setBackground(Color.red);	
+		}			
 		panels.get(position).update();
+		return flag;
 	}
 
 	public static void undo(int position) {
@@ -96,7 +99,7 @@ public class ProblemImagePanel extends JPanel {
 		panels.get(0).update();
 	}
 
-	public static void check(int size) {
+	public static boolean check(int size) {
 		boolean allright = true;
 		for (int i = 1; i < size; i++) {
 			if (backColor.get(i).getBackground() == Color.green) continue;
@@ -106,9 +109,11 @@ public class ProblemImagePanel extends JPanel {
 		if (allright) {
 			backColor.get(0).setBackground(Color.green);
 			panels.get(0).update();
+			return true;
 		} else {
 			backColor.get(0).setBackground(Color.red);
 			panels.get(0).update();
+			return false;
 		}
 	}
 

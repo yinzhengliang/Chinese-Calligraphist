@@ -1,6 +1,5 @@
 package constants;
 
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +39,9 @@ public final class Constant {
 	public static final String PEN_ICON_PATH = IMAGE_PATH + "penIcons/";
 	// Writing Background
 	public static final String PEN_ICON = "pencil.png";
-	
+
 	// ProblemCount Images
-	public static final String PROBLEMCOUNT_IMGAGE_PATH = IMAGE_PATH + "problemCountImages/"; 
+	public static final String PROBLEMCOUNT_IMGAGE_PATH = IMAGE_PATH + "problemCountImages/";
 	public static final List<String> PROBLEMCOUNT_ICONS = new ArrayList<String>();
 
 	public static final String PROBLEMSET_PATH = RESOURCE_PATH + "ProblemSet/";
@@ -54,22 +53,19 @@ public final class Constant {
 	public static final String PROBLEM_CHARACTER_MID_ICON = "/shape_mid.png";
 	public static final String PROBLEM_CHARACTER_SMALL_ICON = "/shape.png";
 	public static final String PROBLEM_DESCRIPTION_FILE = "/description.txt";
-	
+
 	// template directory
 	public static final String TEMPLATE_DIR = RESOURCE_PATH + "Templates/";
-	
-	
+
 	// model directory
 	public static final String MODEL_DIR = RESOURCE_PATH + "models/";
-	
-	
+
 	// shape definition directory
 	public static final String SHAPE_DEFINE_DIR = RESOURCE_PATH + "shapeDefinition/";
 	public static final String RADICAL_CHARACTER_DEFINE_DIR = SHAPE_DEFINE_DIR + "Character/";
 	public static final String STROKE_SHAPE_DEFINE_DIR = SHAPE_DEFINE_DIR + "Stroke/";
 	public static final String TrainingData = RESOURCE_PATH + "MySolutionFeatureExtraction/myResultTT.arff";
-	
-	
+
 	public Constant() {
 		for (int i = 1; i <= 14; i++)
 			PROBLEMCOUNT_ICONS.add(String.format("Problem%d.png", i));

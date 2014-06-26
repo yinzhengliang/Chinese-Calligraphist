@@ -3,7 +3,6 @@ package test;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.Map.Entry;
 
 import recognizer.low.gesture.Long;
 import constants.Constant;
-import core.sketch.Interpretation;
 import core.sketch.Stroke;
 import data.StrokeLoader;
 
@@ -151,7 +149,6 @@ public class GenerateMyFeatures {
 
 	}
 
-	@SuppressWarnings("resource")
 	private static Map<String, String> getValues(String path) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(path));
 		Map<String, String> retValue = new HashMap<String, String>();

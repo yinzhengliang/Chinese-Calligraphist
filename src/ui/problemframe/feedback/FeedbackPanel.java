@@ -15,10 +15,8 @@ import javax.swing.ListSelectionModel;
 
 import core.sketch.Interpretation;
 import core.sketch.Stroke;
-import recognizer.low.NN;
-import recognizer.low.gesture.Long;
+import ui.ChineseCalligraphist.ChineseCalligraphistGUI;
 import ui.problemframe.problem.ProblemDefPanel;
-import ui.problemframe.problem.ProblemImagePanel;
 import ui.problemframe.sketch.SketchPanel;
 
 import javax.swing.event.ListSelectionListener;
@@ -31,8 +29,6 @@ public class FeedbackPanel extends JPanel {
 	private static final long serialVersionUID = -3350754534634144912L;
 	private static DefaultListModel<FeedbackResult> listModel = new DefaultListModel<FeedbackResult>();
 	private final JList<FeedbackResult> feedbackText = new JList<FeedbackResult>(listModel);
-
-	private static NN recognizer = new NN();
 
 	/**
 	 * Create the panel.
@@ -84,7 +80,7 @@ public class FeedbackPanel extends JPanel {
 	}
 
 	public static void recognize(List<Stroke> strokes) {
-		List<Interpretation> interpretations = recognizer.recognize(strokes.get(strokes.size() - 1));
+		List<Interpretation> interpretations = ChineseCalligraphistGUI.recognizer.recognize(strokes.get(strokes.size() - 1));
 		for (Interpretation interpretation : interpretations) {
 			System.out.println(interpretation.getName() + ":\t" + interpretation.getConfidence());
 		}
@@ -94,6 +90,9 @@ public class FeedbackPanel extends JPanel {
 		toadd.add(strokes.get(strokes.size() - 1));
 		listModel.addElement(new FeedbackResult(interpretations.get(0), toadd));
 		ProblemDefPanel.setStrokeFeedback(strokes.size(), interpretations.get(0).getName());
+		
+		// Ladder works now, check higher level info, give feed back
+		
 	}
 
 	public static void clear() {
