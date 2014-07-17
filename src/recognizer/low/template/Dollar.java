@@ -16,7 +16,7 @@ import data.StrokeLoader;
 import recognizer.IRecognizer;
 
 public class Dollar implements IRecognizer {
-	private String templates_folder = Constant.TEMPLATE_DIR + "OneDollar/" + "template";
+	private String templates_folder = Constant.TEMPLATE_DIR + "OneDollar/" + "templates";
 	private Map<String, List<Stroke>> templates = new HashMap<String, List<Stroke>>();
 	
 	private Stroke stroke_to_recognize = new Stroke();
