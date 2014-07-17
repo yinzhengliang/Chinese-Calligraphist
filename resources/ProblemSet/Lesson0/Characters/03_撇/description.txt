@@ -1,5 +1,5 @@
 character:Æ²
-problemText:This is the a basic Stroke "Æ²" or "Ø¯", pronounced as "Pi¨§", which is a positive curve in shape. The correct direction should be written from upright to downleft. Please practice writing.
+problemText:This is a basic Stroke "Æ²" or "Ø¯", pronounced as "Pi¨§", which is a positive curve in shape. The correct direction should be written from upright to downleft. Please practice writing.
 meaning:Basic stroke "Pie"
 pronounce:Pi¨§
 strokeNumber:1

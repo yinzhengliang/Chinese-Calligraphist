@@ -1,5 +1,5 @@
 character:ºá¹³
-problemText:This is the a compound stroke combining "Heng" and "Gou", which means horizontal hook. The correct direction should be written Heng first, and then turns back with a little hook. Please practice writing.
+problemText:This is a compound stroke combining "Heng" and "Gou", which means horizontal hook. The correct direction should be written Heng first, and then turns back with a little hook. Please practice writing.
 meaning:Compound stroke "ºá¹³"
 pronounce:H¨¦ng G¨­u
 strokeNumber:1

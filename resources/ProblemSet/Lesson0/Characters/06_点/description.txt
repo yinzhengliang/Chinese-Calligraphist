@@ -1,5 +1,5 @@
 character:µã
-problemText:This is the a basic Stroke "µã", pronounced as "Di¨£n", which means dot. However in Chinese, it is not like a pixel dot, but a very  short line in shape. The correct direction should be written from upleft to rightdown. Keep writing it short and quickly. Please practice writing.
+problemText:This is a basic Stroke "µã", pronounced as "Di¨£n", which means dot. However in Chinese, it is not like a pixel dot, but a very  short line in shape. The correct direction should be written from upleft to rightdown. Keep writing it short and quickly. Please practice writing.
 meaning:Basic stroke "Dian", dot
 pronounce:Di¨£n
 strokeNumber:1

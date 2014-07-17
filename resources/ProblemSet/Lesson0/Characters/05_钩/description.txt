@@ -1,5 +1,5 @@
 character:¹´
-problemText:This is the a basic Stroke "¹´", pronounced as "G¨­u", which is a hook. The correct direction should is updown and end up with a hook. Please practice writing.
+problemText:This is a basic Stroke "¹´", pronounced as "G¨­u", which is a hook. The correct direction should is updown and end up with a hook. Please practice writing.
 meaning:Basic stroke "Gou", which means hook
 pronounce:G¨­u
 strokeNumber:1

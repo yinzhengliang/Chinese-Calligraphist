@@ -1,5 +1,5 @@
 character:Ìá
-problemText:This is the a basic Stroke "Ìá", pronounced as "T¨ª", which is a positive slope line in shape. It means to lift, to raise. So it is an upwards character stroke. The direction should be from buttomleft to upright. Please practice writing.
+problemText:This is a basic Stroke "Ìá", pronounced as "T¨ª", which is a positive slope line in shape. It means to lift, to raise. So it is an upwards character stroke. The direction should be from buttomleft to upright. Please practice writing.
 meaning:Basic stroke "Ti", to lift, to raise
 pronounce:T¨ª
 strokeNumber:1

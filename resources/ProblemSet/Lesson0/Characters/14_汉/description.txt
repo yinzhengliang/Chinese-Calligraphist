@@ -1,5 +1,5 @@
 character:∫∫
-problemText:This is the a character "∫∫", pronounced as "H®§n", which means Chinese, Han Chinese ethnic group. It is left and right structured character, of which left is a radical "„ﬂ" and right is a character "”÷". Please practice writing.
+problemText:This is a character "∫∫", pronounced as "H®§n", which means Chinese, Han Chinese ethnic group. It is left and right structured character, of which left is a radical "„ﬂ" and right is a character "”÷". Please practice writing.
 meaning:Chinese, Han ethnic group
 pronounce:H®§n
 strokeNumber:5

@@ -1,5 +1,5 @@
 character:×Ó
-problemText:This is the a character "×Ó". which means children or subordinate, pronounced as "z¨«". It contains three strokes, and it can be a radical. Please practice writing.
+problemText:This is a character "×Ó". which means children or subordinate, pronounced as "z¨«". It contains three strokes, and it can be a radical. Please practice writing.
 meaning:children, subordinate
 pronounce:Z¨«
 strokeNumber:3

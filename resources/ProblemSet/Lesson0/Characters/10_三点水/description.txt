@@ -1,5 +1,5 @@
 character:уп
-problemText:This is the a radical "уп" which means water which always appears at left part of a character. Please practice writing.
+problemText:This is a radical "уп" which means water which always appears at left part of a character. Please practice writing.
 meaning:Radical "уп", means water
 pronounce:N/A
 strokeNumber:3

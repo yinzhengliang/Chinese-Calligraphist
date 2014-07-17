@@ -1,5 +1,5 @@
 character:×Ö
-problemText:This is the a character "×Ö", pronounced as "Z¨¬", which means characters and words. It is a up and down structured character, of which top is a radical "å²", and bottom is a character "×Ó". Please practice writing.
+problemText:This is a character "×Ö", pronounced as "Z¨¬", which means characters and words. It is a up and down structured character, of which top is a radical "å²", and bottom is a character "×Ó". Please practice writing.
 meaning:character, word
 pronounce:Z¨¬
 strokeNumber:6

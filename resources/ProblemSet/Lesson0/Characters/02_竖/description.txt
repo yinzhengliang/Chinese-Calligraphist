@@ -1,5 +1,5 @@
 character:Êú
-problemText:This is the a basic Stroke "Êú", pronounced as "Sh¨´", which is a vetical line in shape. And it should be written from up to down. Lot's of characters are made of this stroke. Please practice writing.
+problemText:This is a basic Stroke "Êú", pronounced as "Sh¨´", which is a vetical line in shape. And it should be written from up to down. Lot's of characters are made of this stroke. Please practice writing.
 meaning:Basic stroke "Shu"
 pronounce:Sh¨´
 strokeNumber:1
