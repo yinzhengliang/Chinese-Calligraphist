@@ -16,11 +16,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import recognizer.high.Ladder;
 import constants.Constant;
+import ui.ChineseCalligraphist.ChineseCalligraphistGUI;
 import ui.problemframe.feedback.FeedbackPanel;
 import ui.problemframe.problem.ProblemImagePanel;
 import core.sketch.Point;
 import core.sketch.Stroke;
+import data.StrokeLoader;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
@@ -36,6 +39,11 @@ public class SketchPanel extends JPanel {
 	private static Stack<Stroke> undoStrokes = new Stack<Stroke>();
 	private static List<Stroke> hightlighted = new ArrayList<Stroke>();
 	static Integer iii = 0;
+	
+//	private static List<Stroke> s = new ArrayList<Stroke>();
+	
+	
+	
 	static JLabel canvas = new JLabel() {
 		/**
 		 * 
@@ -76,6 +84,8 @@ public class SketchPanel extends JPanel {
 				undoStrokes.clear();
 				strokes.get(strokes.size() - 1).addPoint(new Point(e.getX(), e.getY()));
 				canvas.repaint();
+//				strokes.add(s.get(strokes.size()));
+//				canvas.repaint();
 			}
 
 			@Override
@@ -125,6 +135,18 @@ public class SketchPanel extends JPanel {
 		setPreferredSize(new Dimension(640, 432));
 
 		setCursor();
+		
+//		getDrawing();
+	}
+
+	private void getDrawing() {
+		StrokeLoader loader = new StrokeLoader();
+		String dir = "C:/Users/Yin/Desktop/Untitled Folder/";
+		String path = dir + "sousa-301-[2014-07-08-22-32-02.993375]-chinese-calligraphist-student-2-lesson-1-numbers_quiz/301/4142/47188.xml";
+		loader.setDocument(path);
+		loader.setStrokes();
+//		s = loader.getStrokes();
+		System.out.println("");
 	}
 
 	public void setCursor() {
@@ -142,6 +164,7 @@ public class SketchPanel extends JPanel {
 			Stroke toremove = strokes.remove(strokes.size() - 1);
 			canvas.repaint();
 			FeedbackPanel.undo(toremove);
+			ChineseCalligraphistGUI.ladder.undo(strokes);
 			ProblemImagePanel.undo(strokes.size() + 1);
 		}
 

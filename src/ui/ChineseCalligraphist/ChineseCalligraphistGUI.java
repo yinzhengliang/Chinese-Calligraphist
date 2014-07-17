@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import recognizer.low.NN;
+import recognizer.low.gesture.Rubine;
 import recognizer.high.Ladder;
-
 import ui.problemframe.ProblemFrame;
 
 import javax.swing.JTabbedPane;
@@ -21,6 +21,7 @@ public class ChineseCalligraphistGUI extends JFrame {
 	private static final long serialVersionUID = -3000445710487189521L;
 	private JTabbedPane contentPane;
 	public static NN recognizer = new NN();
+//	public static Rubine recognizer = new Rubine();
 	public static Ladder ladder = new Ladder();
 	/**
 	 * Launch the application.

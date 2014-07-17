@@ -76,7 +76,7 @@ public class ProblemFrame extends JPanel {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
-		JMenuItem mntmNew = new JMenuItem("New");
+		JMenuItem mntmNew = new JMenuItem("Open Course");
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LessonLoadDialog a = new LessonLoadDialog();
