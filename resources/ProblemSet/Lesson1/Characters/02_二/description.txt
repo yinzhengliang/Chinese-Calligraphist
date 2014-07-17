@@ -1,0 +1,7 @@
+character:ถþ
+problemText:"ถþ", pronounced as "จจr", which is two, currently it means "idiot" as an online jargon. It's quite simple. Please practise writing.
+meaning:two
+pronounce:จจr
+strokeNumber:2
+Strokes:"Heng"	"Heng"
+Radicals:N/A

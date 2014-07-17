@@ -1,0 +1,7 @@
+character:°Ù
+problemText:This character "°Ù", pronounced as "B¨£i", means hundred. It is up down structured, of which up is a "Heng", and down is a radical "°×", also reads bai. Please practice writing.
+meaning:hundred
+pronounce:B¨£i
+strokeNumber:6
+Strokes:"Heng"	"Pie"	"Shu"	"HengZhe"	"Heng"	"Heng"
+Radicals:"°×"

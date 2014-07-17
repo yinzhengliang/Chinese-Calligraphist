@@ -1,0 +1,7 @@
+character:°Ë
+problemText:The character "°Ë", pronounced as "B¨¡", means eight. It is the easiest left and right structured character. Please practice writing.
+meaning:eight
+pronounce:B¨¡
+strokeNumber:2
+Strokes:"Pie"	"Na"
+Radicals:N/A

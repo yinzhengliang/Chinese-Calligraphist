@@ -1,0 +1,7 @@
+character:ʶ
+problemText:This character "ʶ", pronounced as "Shi", means to recognize. It is left right structured, of which left is a radical "ڥ" that means to say, and right is a character "ֻ", which means only. Please practice writing.
+meaning:to recognize
+pronounce:Shi
+strokeNumber:7
+Strokes:"Dian"	"HengZheTi"	"Shu"	"HengZhe"	"Heng"	"Pie"	"Dian"
+Radicals:"ڥ"	"ֻ"

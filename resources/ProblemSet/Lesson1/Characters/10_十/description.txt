@@ -1,0 +1,7 @@
+character:Ê®
+problemText:This cross is the character "Ê®", pronounced as "Sh¨ª", which means ten. Please practice writing.
+meaning:ten
+pronounce:Sh¨ª
+strokeNumber:2
+Strokes:"Heng"	"Shu"
+Radicals:N/A

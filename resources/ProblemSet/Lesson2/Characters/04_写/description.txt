@@ -1,0 +1,7 @@
+character:ะด
+problemText:This character "ะด", pronounced as "Xie", means to write. It is up down structured, of which up is a radical "ฺข" (means cover), and down is a character "ำ๋", which meas and. Please practice writing.
+meaning:to write, writing
+pronounce:Xie
+strokeNumber:5
+Strokes:"Shu"	"HengGou"	"Heng"	"ShuZheZheGou"	"Heng"
+Radicals:"ฺข"	"ำ๋"

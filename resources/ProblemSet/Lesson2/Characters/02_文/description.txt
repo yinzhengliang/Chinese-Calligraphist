@@ -1,0 +1,7 @@
+character:ÎÄ
+problemText:This character "ÎÄ", pronounced as "W¨¦n", has lots of meaning related to language and literature. Please practice writing.
+meaning:character, language, writing, script, literary, gentle, refined
+pronounce:W¨¦n
+strokeNumber:4
+Strokes:"Dian"	"Heng"	"Pie"	"Na"
+Radicals:N/A

@@ -1,0 +1,7 @@
+character:Îå
+problemText:The character "Îå", pronounced as "W¨³", means five. Please practice writing.
+meaning:five
+pronounce:W¨³
+strokeNumber:4
+Strokes:"Heng"	"Shu"	"HengZhe"	"Shu"
+Radicals:N/A

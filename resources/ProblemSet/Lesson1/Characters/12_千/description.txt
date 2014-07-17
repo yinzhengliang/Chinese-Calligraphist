@@ -1,0 +1,7 @@
+character:認
+problemText:This character "認", pronounced as "Qi─n", which means thousand. It is up down structured. Up is "Pie", and down is "Shi" (ten). Please practice writing.
+meaning:thousand
+pronounce:Qi─n
+strokeNumber:3
+Strokes:"Pie"	"Heng"	"Shu"
+Radicals:"噴"

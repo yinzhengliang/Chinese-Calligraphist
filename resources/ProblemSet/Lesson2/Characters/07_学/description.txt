@@ -1,0 +1,7 @@
+character:学
+problemText:This character "学", pronounced as "Xue", means learning. It is up down structured, of which up is a three dot, middle is radical "冖", and down is a character "子". Please practice writing.
+meaning:to study, to learn
+pronounce:Xue
+strokeNumber:8
+Strokes:"Dian"	"Dian"	"Pie"	"Shu"	"HengGou"	"HengPie"	"Gou"	"Heng"
+Radicals:"子"

@@ -1,0 +1,7 @@
+character: ÷
+problemText:This character " ÷", pronounced as "Sh®Øu", means hand. Please practice writing.
+meaning:hand
+pronounce:Sh®Øu
+strokeNumber:4
+Strokes:"Pie"	"Heng"	"Heng"	"Gou"
+Radicals:N/A

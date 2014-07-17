@@ -1,0 +1,7 @@
+character:ÖÐ
+problemText:This character "ÖÐ", pronounced as "Zh¨­ng", means center. Please practice writing.
+meaning:center, centroid, middle, Chinese
+pronounce:Zh¨­ng
+strokeNumber:4
+Strokes:"Shu"	"HengZhe"	"Heng"	"Shu"
+Radicals:N/A

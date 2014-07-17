@@ -1,0 +1,7 @@
+character:ËÄ
+problemText:"ËÄ", pronounced as "S¨¬", means 4. It is a complex and solid structured character. Note that, you should finish the strokes inside the box, and then close the box with the underline Heng. Please practice writing.
+meaning:four
+pronounce:S¨¬
+strokeNumber:5
+Strokes:"Shu"	"HengZhe"	"Pie"	"ShuZhe"	"Heng"
+Radicals:N/A

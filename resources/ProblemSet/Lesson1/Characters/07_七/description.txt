@@ -1,0 +1,7 @@
+character:Æß
+problemText:The character "Æß", pronounced as "Q¨©", means seven. Two stroke character. Heng first, then ShuWanGou. Please practice writing.
+meaning:seven
+pronounce:Q¨©
+strokeNumber:2
+Strokes:"Heng"	"ShuWanGou"
+Radicals:N/A

@@ -1,0 +1,7 @@
+character:ϰ
+problemText:This character "ϰ", pronounced as "Xi", means to practice. Please practice writing.
+meaning:to practice
+pronounce:Xi
+strokeNumber:3
+Strokes:"HengZheGou"	"Dian"	"Ti"
+Radicals:N/A

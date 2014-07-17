@@ -1,0 +1,7 @@
+character:Ò»
+problemText:This is the character "Ò»", pronounced as "Y¨©", which is one. It is the simple character.Please practice writing.
+meaning:one, once
+pronounce:Y¨©
+strokeNumber:1
+Strokes:"Heng"
+Radicals:N/A

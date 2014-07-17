@@ -1,0 +1,7 @@
+character:±π
+problemText:This character "±π", pronounced as "Bie", means others or to distinguish. It is left right structured, of which left is a character "Αν" that means others, and right is a radical "ΨΦ", which is knife. Please practice writing.
+meaning:other, to distinguish
+pronounce:Bie
+strokeNumber:7
+Strokes:"Shu"	"HengZhe"	"Heng"	"HengZheGou"	"Pie"	"Shu"	"Gou"
+Radicals:"Αν"	"ΨΦ"

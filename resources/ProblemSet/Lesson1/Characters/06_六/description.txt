@@ -1,0 +1,7 @@
+character:Áù
+problemText:The character "Áù", pronounced as "Li¨´", means number six. Please practice writing.
+meaning:six
+pronounce:Li¨´
+strokeNumber:4
+Strokes:"Dian"	"Heng"	"Pie"	"Dian"
+Radicals:N/A

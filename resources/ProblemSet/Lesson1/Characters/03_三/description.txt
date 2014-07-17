@@ -1,0 +1,7 @@
+character:Èý
+problemText:This is the character "Èý", pronounced as "S¨¡n", which means three. Please practice writing.
+meaning:three
+pronounce:S¨¡n
+strokeNumber:3
+Strokes:"Heng"	"Heng"	"Heng"
+Radicals:N/A

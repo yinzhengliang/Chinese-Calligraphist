@@ -1,0 +1,7 @@
+character:¾Å
+problemText:The character "¾Å", pronounced as "Ji¨³", is nine. Please practice writing.
+meaning:nie
+pronounce:Ji¨³
+strokeNumber:2
+Strokes:"Pie"	"HengZheWanGou"
+Radicals:N/A

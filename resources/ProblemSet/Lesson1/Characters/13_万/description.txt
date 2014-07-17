@@ -1,0 +1,7 @@
+character:Íò
+problemText:This character "Íò", pronounced as "W¨¤n", means ten thousand. . Please practice writing.
+meaning:ten thousand
+pronounce:W¨¤n
+strokeNumber:3
+Strokes:"Heng"	"Pie"	"ShuZhe"
+Radicals:N/A
