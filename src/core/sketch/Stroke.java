@@ -99,5 +99,6 @@ public class Stroke {
 		for (Point point : target.getPoints()) {
 			this.addPoint(new Point(point.getX(), point.getY(), point.getTime(), point.getId()));
 		}
+		this.serialNumber = target.serialNumber;
 	}
 }

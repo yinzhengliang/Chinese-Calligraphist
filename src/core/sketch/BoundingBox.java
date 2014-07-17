@@ -55,6 +55,20 @@ public class BoundingBox {
 		up = down = p.getY();
 	}
 	
+	public BoundingBox(BoundingBox boundingBox) {
+		this.left = boundingBox.left;
+		this.right = boundingBox.right;
+		this.up = boundingBox.up;
+		this.down = boundingBox.down;
+	}
+	
+	public void expand(BoundingBox boundingBox) {
+		this.left = (this.left < boundingBox.left ? this.left : boundingBox.left);
+		this.right = (this.right > boundingBox.right ? this.right : boundingBox.right);
+		this.up = (this.up < boundingBox.up ? this.up : boundingBox.up);
+		this.down = (this.down > boundingBox.down ? this.down : boundingBox.down);
+	}
+
 	public void update(Point p) {
 		update(p.getX(), p.getY());
 	}

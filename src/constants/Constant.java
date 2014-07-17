@@ -65,6 +65,7 @@ public final class Constant {
 	public static final String RADICAL_CHARACTER_DEFINE_DIR = SHAPE_DEFINE_DIR + "Character/";
 	public static final String STROKE_SHAPE_DEFINE_DIR = SHAPE_DEFINE_DIR + "Stroke/";
 	public static final String TrainingData = RESOURCE_PATH + "MySolutionFeatureExtraction/myResultTT.arff";
+//	public static final String TrainingData = RESOURCE_PATH + "MySolutionFeatureExtraction/model.arff";
 
 	public Constant() {
 		for (int i = 1; i <= 14; i++)
