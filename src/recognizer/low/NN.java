@@ -48,6 +48,7 @@ public class NN implements IRecognizer {
 
 		Map<String, Double> features = LONG.calculateFeatures(stroke);
 		Instance inst = new Instance(87);
+//		Instance inst = new Instance(9);
 		inst.setDataset(train);
 
 		int index = 0;
@@ -73,7 +74,11 @@ public class NN implements IRecognizer {
 		inst.setValue(index++, features.get("f20"));
 		inst.setValue(index++, features.get("f21"));
 		inst.setValue(index++, features.get("f22"));
-
+		
+//		inst.setValue(index++, features.get("f12"));
+//		inst.setValue(index++, features.get("f15"));
+//		inst.setValue(index++, features.get("f21"));
+//
 		Map<String, Double> rValue = getMap(rubine.recognize(stroke));
 		Map<String, Double> lValue = getMap(LONG.recognize(stroke));
 		Map<String, Double> hValue = getMap(huasdorff.recognize(stroke));
@@ -110,6 +115,13 @@ public class NN implements IRecognizer {
 				inst.setValue(index++, 0.0);
 			}
 		}
+		
+//		inst.setValue(index++, rValue.get("ShuZhe"));
+//		inst.setValue(index++, rValue.get("Gou"));
+//		inst.setValue(index++, rValue.get("Shu"));
+//		inst.setValue(index++, lValue.get("ShuZhe"));
+//		inst.setValue(index++, dValue.get("ShuZhe"));
+		
 
 		// inst.setValue(index, 0.0);
 		//
