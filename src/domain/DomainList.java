@@ -30,7 +30,7 @@ public final class DomainList {
 	// }
 
 	public DomainList(String path) {
-		domainListLoadingPath = path;
+ 		domainListLoadingPath = path;
 		setDocument(domainListLoadingPath);
 		setDomainDefinition();
 		setShapes();

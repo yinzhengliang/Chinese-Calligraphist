@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,9 @@ import core.sketch.Point;
 import core.sketch.Stroke;
 
 public class Constraint {
+	String para1String = "";
+	String para2String = "";
+	
 	DomainShape para1 = null;
 	DomainShape para2 = null;
 	String feedback = "";
@@ -23,6 +27,14 @@ public class Constraint {
 		String check = constraint.get("check");
 		if (!check.equals(""))
 			this.check = check;
+		
+		String para1String = constraint.get("para1");
+		if (!check.equals(""))
+			this.para1String = para1String;
+		
+		String para2String = constraint.get("para2");
+		if (!para2String.equals(""))
+			this.para2String = para2String;
 
 		String para1Spec = constraint.get("para1Spec");
 		if (!para1Spec.equals(""))
@@ -85,9 +97,28 @@ public class Constraint {
 			retValue = After();
 			break;
 		}
+		case "Intersect": {
+			retValue = Intersect();
+			break;
+		}
+		case "Coincide": {
+			retValue = Coincide();
+			break;
+		}
 		// other cases
 		}
 		return retValue;
+	}
+
+	private boolean Coincide() {
+		Point para1SpecPoint = getParaSpecPoint(para1, para1Spec);
+		Point para2SpecPoint = getParaSpecPoint(para2, para2Spec);
+		return (para1SpecPoint.distanceTo(para2SpecPoint) < around);
+	}
+
+	private boolean Intersect() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	private boolean After() {
@@ -124,7 +155,7 @@ public class Constraint {
 		} else {
 			para2SpecValue = getParaSpecValue(para2, para2Spec);
 		}
-		return (para1SpecValue > para2SpecValue);
+		return (para1SpecValue < para2SpecValue);
 	}
 
 	private boolean Below() {
@@ -142,7 +173,7 @@ public class Constraint {
 		} else {
 			para2SpecValue = getParaSpecValue(para2, para2Spec);
 		}
-		return (para1SpecValue < para2SpecValue);
+		return (para1SpecValue > para2SpecValue);
 	}
 
 	private boolean Left() {
@@ -203,7 +234,6 @@ public class Constraint {
 		// other cases
 		}
 		return retValue;
-
 	}
 
 	private Point getParaSpecPoint(DomainShape shape, String spec) {
@@ -218,6 +248,14 @@ public class Constraint {
 			Stroke stroke = strokes.get(strokes.size() - 1);
 			List<Point> points = stroke.getPoints();
 			retPoint = points.get(points.size() - 1);
+			break;
+		}
+		case "midPoint": {
+			List<Point> points = new ArrayList<Point>();
+			for (Stroke stroke : strokes) {
+				points.addAll(stroke.getPoints());
+			}
+			retPoint = points.get((int)(points.size() - 1) / 2);
 			break;
 		}
 		}
@@ -258,5 +296,9 @@ public class Constraint {
 			para2SpecValue = getParaSpecValue(para2, para2Spec);
 		}
 		return (Math.abs(para1SpecValue - para2SpecValue) < around);
+	}
+	
+	public String getFeedbackString() {
+		return feedback;
 	}
 }
