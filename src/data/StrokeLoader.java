@@ -34,6 +34,7 @@ public class StrokeLoader {
 		filename = path;
 		try {
 			File file = new File(filename);
+			if (file == null) System.out.println("!@#");
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dFactory.newDocumentBuilder();
 			doc = dBuilder.parse(file);

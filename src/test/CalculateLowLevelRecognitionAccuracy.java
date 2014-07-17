@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import recognizer.low.NN;
 import recognizer.low.gesture.Rubine;
 import recognizer.low.gesture.Long;
 import recognizer.low.template.Dollar;
@@ -21,6 +22,8 @@ public class CalculateLowLevelRecognitionAccuracy {
 	private static Long LONG = new Long();
 	private static Hausdroff huasdorff = new Hausdroff();
 	private static Dollar onedollar = new Dollar();
+
+//	private static NN recognizer = new NN();
 	
 	public static void main(String[] args) {
 		String path = Constant.RESOURCE_PATH + "TestData/";
@@ -61,7 +64,9 @@ public class CalculateLowLevelRecognitionAccuracy {
 		write(hI, file.getParent() + "/hausdorff_" + file.getName());
 		write(dI, file.getParent() + "/dollar_" + file.getName());
 		
+//		List<Interpretation> I = recognizer.recognize(stroke);
 		
+//		write(I, file.getParent() + "/nn_" + file.getName());
 		
 	}
 
@@ -69,7 +74,7 @@ public class CalculateLowLevelRecognitionAccuracy {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(S));
 			for (Interpretation i : I) {
-				writer.write(i.getName() + ":\t" + i.getConfidence());
+				writer.write(i.getName() + ":\t" + i.getConfidence());	
 				writer.newLine();
 			}
 			writer.close();

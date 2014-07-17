@@ -37,8 +37,11 @@ public class GenerateMyFeatures {
 
 	private static void output(String outputFolder) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFolder + "myResultTT.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(outputFolder + "myResultTT01.arff"));
 
+			writer.write("@relation TT");
+			writer.newLine();
+			writer.newLine();
 			printHead(writer);
 			writer.write("@DATA\n");
 			for (Map.Entry<String, Map<String, Map<String, String>>> entry : allfiles.entrySet()) {

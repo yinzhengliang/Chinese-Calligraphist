@@ -30,7 +30,7 @@ public class Han {
 		Element shapeElement = doc.createElement("Hypothesis");
 		doc.appendChild(shapeElement);
 		//
-		shapeElement.setAttribute("name", "You");
+		shapeElement.setAttribute("name", "Han");
 		shapeElement.setAttribute("type", "Character");
 
 		Element componentListElement = doc.createElement("components");
@@ -38,15 +38,15 @@ public class Han {
 
 		Element componentElement = doc.createElement("component");
 		componentListElement.appendChild(componentElement);
-		componentElement.setAttribute("name", "HengPie");
-		componentElement.setAttribute("type", "Observation");
-		componentElement.setAttribute("alias", "hengpie");
+		componentElement.setAttribute("name", "SanDianShui");
+		componentElement.setAttribute("type", "Radical");
+		componentElement.setAttribute("alias", "sandianshui");
 
 		Element componentElement2 = doc.createElement("component");
 		componentListElement.appendChild(componentElement2);
-		componentElement2.setAttribute("name", "Na");
-		componentElement2.setAttribute("type", "Observation");
-		componentElement2.setAttribute("alias", "na");
+		componentElement2.setAttribute("name", "You");
+		componentElement2.setAttribute("type", "Character");
+		componentElement2.setAttribute("alias", "you");
 
 		// constraint
 		Element constraintListElement = doc.createElement("constraints");
@@ -54,36 +54,29 @@ public class Han {
 
 		Element constraint1 = doc.createElement("constraint");
 		constraintListElement.appendChild(constraint1);
-		constraint1.setAttribute("check", "Intersect");
-		constraint1.setAttribute("para1", "hengpie");
-		constraint1.setAttribute("para2", "na");
+		constraint1.setAttribute("check", "Left");
+		constraint1.setAttribute("para1", "sandianshui");
+		constraint1.setAttribute("para1Spec", "Right");
+		constraint1.setAttribute("para2", "you");
+		constraint1.setAttribute("para2Spec", "Left");
 		// constraint1.setAttribute("feedbackString", "");
 
 		Element constraint2 = doc.createElement("constraint");
 		constraintListElement.appendChild(constraint2);
 		constraint2.setAttribute("check", "Above");
-		constraint2.setAttribute("para1", "hengpie");
+		constraint2.setAttribute("para1", "sandianshui");
 		constraint2.setAttribute("para1Spec", "Top");
-		constraint2.setAttribute("para2", "na");
+		constraint2.setAttribute("para2", "you");
 		constraint2.setAttribute("para2Spec", "Top");
 		// constraint2.setAttribute("feedbackString", "");
 
 		Element constraint3 = doc.createElement("constraint");
 		constraintListElement.appendChild(constraint3);
-		constraint3.setAttribute("check", "Right");
-		constraint3.setAttribute("para1", "na");
-		constraint3.setAttribute("para1Spec", "Right");
-		constraint3.setAttribute("para2", "hengpie");
-		constraint3.setAttribute("para2Spec", "Right");
-		// constraint3.setAttribute("feedbackString", "");
-		
-		Element constraint4 = doc.createElement("constraint");
-		constraintListElement.appendChild(constraint4);
-		constraint4.setAttribute("check", "Left");
-		constraint4.setAttribute("para1", "hengpie");
-		constraint4.setAttribute("para1Spec", "Left");
-		constraint4.setAttribute("para2", "na");
-		constraint4.setAttribute("para2Spec", "Left");
+		constraint3.setAttribute("check", "Below");
+		constraint3.setAttribute("para1", "sandianshui");
+		constraint3.setAttribute("para1Spec", "Bottom");
+		constraint3.setAttribute("para2", "you");
+		constraint3.setAttribute("para2Spec", "Bottom");
 		// constraint3.setAttribute("feedbackString", "");
 
 		// ============================ change as order =======================
@@ -93,9 +86,9 @@ public class Han {
 		Element feedbackElement1 = doc.createElement("feedback");
 		feedbackListElement.appendChild(feedbackElement1);
 		feedbackElement1.setAttribute("check", "Before");
-		feedbackElement1.setAttribute("para1", "hengpie");
-		feedbackElement1.setAttribute("para2", "na");
-		feedbackElement1.setAttribute("feedbackString", "HengPie should be written before Na");
+		feedbackElement1.setAttribute("para1", "sandianshui");
+		feedbackElement1.setAttribute("para2", "you");
+		feedbackElement1.setAttribute("feedbackString", "SanDianShui radical should be completed before writing You");
 
 		// write the content into xml file
 		try {
